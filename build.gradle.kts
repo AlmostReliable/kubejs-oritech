@@ -28,7 +28,9 @@ repositories {
 
 dependencies {
     // KubeJS
-    implementation("dev.latvian.mods:kubejs-neoforge:${almostgradle.getProperty("kjsVersion")}")
+    implementation("dev.latvian.mods:kubejs-neoforge:${almostgradle.getProperty("kjsVersion")}")?.let {
+        interfaceInjectionData(it)
+    }
     // Oritech
     implementation("rearth.oritech:oritech-neoforge-${almostgradle.minecraftVersion}:${almostgradle.getProperty("oritechVersion")}")
 }
