@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 
 import dev.latvian.mods.kubejs.event.KubeEvent;
 import rearth.oritech.block.entity.accelerator.AcceleratorControllerBlockEntity;
@@ -12,6 +13,6 @@ import rearth.oritech.init.recipes.OritechRecipe;
 import org.jetbrains.annotations.Nullable;
 
 public record ParticleCollidedEvent(
-    ServerLevel getLevel, BlockPos getPos, AcceleratorControllerBlockEntity getController, ItemStack getItemA, ItemStack getItemB,
-    float getSpeed, @Nullable ResourceLocation getRecipeId, @Nullable OritechRecipe getRecipe
+    ServerLevel getLevel, BlockPos getPos, AcceleratorControllerBlockEntity getController, Vec3 getCollisionPos, ItemStack getItemA,
+    ItemStack getItemB, float getSpeed, @Nullable ResourceLocation getRecipeId, @Nullable OritechRecipe getRecipe
 ) implements KubeEvent {}

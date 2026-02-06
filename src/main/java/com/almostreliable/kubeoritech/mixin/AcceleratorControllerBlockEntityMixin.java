@@ -93,7 +93,17 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         Preconditions.checkNotNull(level);
         Preconditions.checkNotNull(particle);
 
-        var kubeEvent = new ParticleCollidedEvent(level, blockEntity.getBlockPos(), blockEntity, inputA, inputB, speed, recipeId, recipe);
+        var kubeEvent = new ParticleCollidedEvent(
+            level,
+            blockEntity.getBlockPos(),
+            blockEntity,
+            particle.position,
+            inputA,
+            inputB,
+            speed,
+            recipeId,
+            recipe
+        );
         if (eventHandler.post(kubeEvent).interruptFalse()) {
             cir.setReturnValue(false);
         }
