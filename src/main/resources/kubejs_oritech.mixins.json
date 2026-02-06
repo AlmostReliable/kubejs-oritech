@@ -3,7 +3,7 @@
   "minVersion": "0.8.5",
   "package": "com.almostreliable.kubeoritech.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["RecipesKubeEventMixin", "SoulCollectionDeathListenerMixin"],
+  "mixins": ["AcceleratorControllerBlockEntityMixin", "RecipesKubeEventMixin", "SoulCollectionDeathListenerMixin"],
   "injectors": {
     "defaultRequire": 1
   }
