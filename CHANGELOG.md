@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - added `particleCollided` event
   - fired when a particle collides with another particle
   - can be canceled to consume the particles without an output
+- renamed `position` to `pos` and `blockEntity` to `soulCollector` in `soulCollection` event
 
 ## [0.2.0] - 2026-02-06
 
@@ -22,5 +23,6 @@ All notable changes to this project will be documented in this file.
 Initial 1.21.1 release!
 
 <!-- Versions -->
+
 [0.2.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.2.0
 [0.1.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.1.0

@@ -12,6 +12,6 @@ import rearth.oritech.init.recipes.OritechRecipe;
 import org.jetbrains.annotations.Nullable;
 
 public record ParticleCollidedEvent(
-    ServerLevel getLevel, BlockPos getPosition, AcceleratorControllerBlockEntity getControllerBlockEntity, ItemStack getItemA,
-    ItemStack getItemB, float getSpeed, @Nullable ResourceLocation getRecipeId, @Nullable OritechRecipe getRecipe
+    ServerLevel getLevel, BlockPos getPos, AcceleratorControllerBlockEntity getController, ItemStack getItemA, ItemStack getItemB,
+    float getSpeed, @Nullable ResourceLocation getRecipeId, @Nullable OritechRecipe getRecipe
 ) implements KubeEvent {}

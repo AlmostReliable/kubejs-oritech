@@ -12,8 +12,8 @@ import rearth.oritech.block.entity.accelerator.AcceleratorParticleLogic;
 
 @SuppressWarnings("AssignmentToStaticFieldFromInstanceMethod")
 public record ParticleInjectedEvent(
-    ServerLevel getLevel, AcceleratorControllerBlockEntity getControllerBlockEntity, BlockPos getStartPos, BlockPos getFirstGatePos,
-    AcceleratorParticleLogic.ActiveParticle getParticle, ItemStack getParticleItem
+    ServerLevel getLevel, BlockPos getPos, AcceleratorControllerBlockEntity getController, BlockPos getStartPos, BlockPos getGatePos,
+    AcceleratorParticleLogic.ActiveParticle getParticle, ItemStack getItem
 ) implements KubeEvent {
 
     public void disableNetherPortal() {

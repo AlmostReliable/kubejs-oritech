@@ -58,7 +58,15 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         Preconditions.checkNotNull(level);
         Preconditions.checkNotNull(particle);
 
-        var kubeEvent = new ParticleInjectedEvent(level, blockEntity, startPos, firstGatePos, particle, inventory.getItem(0));
+        var kubeEvent = new ParticleInjectedEvent(
+            level,
+            blockEntity.getBlockPos(),
+            blockEntity,
+            startPos,
+            firstGatePos,
+            particle,
+            inventory.getItem(0)
+        );
         if (eventHandler.post(kubeEvent).interruptFalse()) {
             particle = null;
             ci.cancel();

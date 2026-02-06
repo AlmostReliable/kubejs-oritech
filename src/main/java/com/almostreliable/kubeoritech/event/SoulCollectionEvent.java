@@ -18,16 +18,16 @@ import org.jetbrains.annotations.Nullable;
 public class SoulCollectionEvent implements KubeEvent {
 
     private final ServerLevel level;
-    private final Vec3 position;
-    private final BaseSoulCollectionEntity blockEntity;
+    private final Vec3 pos;
+    private final BaseSoulCollectionEntity soulCollector;
     @Nullable
     private final LivingEntity entity;
     private int soulValue = 1;
 
-    public SoulCollectionEvent(ServerLevel level, Vec3 position, BaseSoulCollectionEntity blockEntity, @Nullable LivingEntity entity) {
+    public SoulCollectionEvent(ServerLevel level, Vec3 pos, BaseSoulCollectionEntity soulCollector, @Nullable LivingEntity entity) {
         this.level = level;
-        this.position = position;
-        this.blockEntity = blockEntity;
+        this.pos = pos;
+        this.soulCollector = soulCollector;
         this.entity = entity;
     }
 
@@ -35,12 +35,12 @@ public class SoulCollectionEvent implements KubeEvent {
         return level;
     }
 
-    public Vec3 getPosition() {
-        return position;
+    public Vec3 getPos() {
+        return pos;
     }
 
-    public BaseSoulCollectionEntity getBlockEntity() {
-        return blockEntity;
+    public BaseSoulCollectionEntity getSoulCollector() {
+        return soulCollector;
     }
 
     @Nullable
