@@ -3,12 +3,14 @@ package com.almostreliable.kubeoritech.mixin;
 import com.almostreliable.kubeoritech.KubePlugin;
 import com.almostreliable.kubeoritech.ModInitializer;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleCollidedEvent;
+import com.almostreliable.kubeoritech.event.particle.state.ParticleExitedEvent;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleInjectedEvent;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.phys.Vec3;
 
 import com.google.common.base.Preconditions;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
@@ -95,6 +97,22 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         if (eventHandler.post(kubeEvent).interruptFalse()) {
             cir.setReturnValue(false);
         }
+    }
+
+    @Inject(method = "onParticleExited", at = @At("HEAD"), remap = false)
+    private void kubejs_oritech$onParticleExited(
+        Vec3 from, Vec3 to, BlockPos lastGate, Vec3 exitDirection, AcceleratorControllerBlockEntity.ParticleEvent reason, CallbackInfo ci
+    ) {
+        var eventHandler = KubePlugin.Events.PARTICLE_EXITED;
+        if (!eventHandler.hasListeners()) return;
+
+        var blockEntity = (AcceleratorControllerBlockEntity) (Object) this;
+        var level = (ServerLevel) blockEntity.getLevel();
+
+        Preconditions.checkNotNull(level);
+
+        var kubeEvent = new ParticleExitedEvent(level, blockEntity.getBlockPos(), blockEntity, lastGate, from, to, exitDirection, reason);
+        eventHandler.post(kubeEvent);
     }
 
     @WrapWithCondition(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/AcceleratorControllerBlockEntity;spawnEndPortal(Lnet/minecraft/core/BlockPos;)V"), remap = false)

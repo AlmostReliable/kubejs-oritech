@@ -4,6 +4,7 @@ import com.almostreliable.kubeoritech.component.ArchFluidStackComponent;
 import com.almostreliable.kubeoritech.component.FluidIngredientComponent;
 import com.almostreliable.kubeoritech.event.SoulCollectionEvent;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleCollidedEvent;
+import com.almostreliable.kubeoritech.event.particle.state.ParticleExitedEvent;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleInjectedEvent;
 import com.almostreliable.kubeoritech.recipe.generator.BioGeneratorKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.generator.FuelGeneratorKubeRecipe;
@@ -95,6 +96,7 @@ public class KubePlugin implements KubeJSPlugin {
 
         EventHandler PARTICLE_INJECTED = GROUP.server("particleInjected", () -> ParticleInjectedEvent.class).hasResult();
         EventHandler PARTICLE_COLLIDED = GROUP.server("particleCollided", () -> ParticleCollidedEvent.class).hasResult();
+        EventHandler PARTICLE_EXITED = GROUP.server("particleExited", () -> ParticleExitedEvent.class);
 
         EventHandler SOUL_COLLECTION = GROUP.server("soulCollection", () -> SoulCollectionEvent.class).hasResult();
     }
