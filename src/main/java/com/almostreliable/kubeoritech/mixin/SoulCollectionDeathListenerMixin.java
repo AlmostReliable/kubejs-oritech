@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
  * See {@link SoulCollectionEvent}.
  */
 @Mixin(BaseSoulCollectionEntity.DeathListener.class)
-public class SoulCollectionDeathListenerMixin {
+public abstract class SoulCollectionDeathListenerMixin {
 
     @Shadow
     @Final

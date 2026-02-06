@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 @Mixin(RecipesKubeEvent.class)
-public class RecipesKubeEventMixin {
+public abstract class RecipesKubeEventMixin {
 
     @ModifyReceiver(method = "applyChanges", at = @At(value = "INVOKE", target = "Ljava/util/stream/Stream;peek(Ljava/util/function/Consumer;)Ljava/util/stream/Stream;", ordinal = 1), remap = false)
     private Stream<KubeRecipe> kubejs_oritech$filterInvalidRecipes(Stream<KubeRecipe> instance, Consumer<? super KubeRecipe> peekConsumer) {
