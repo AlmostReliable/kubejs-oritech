@@ -8,11 +8,15 @@ import dev.latvian.mods.kubejs.recipe.KubeRecipe;
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
 import dev.latvian.mods.kubejs.recipe.RecipesKubeEvent;
 import dev.latvian.mods.kubejs.script.ConsoleJS;
+import rearth.oritech.init.recipes.OritechRecipe;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/**
+ * See {@link OritechRecipe}, and {@link OritechRecipeSchema}.
+ */
 public abstract class OritechKubeRecipe extends KubeRecipe {
 
     public boolean valid = true;
@@ -27,6 +31,16 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
             ConsoleJS.SERVER.error("Error creating recipe '" + getOrCreateId() + "'", e, RecipesKubeEvent.CREATE_RECIPE_SKIP_ERROR);
             valid = false;
         }
+    }
+
+    public OritechKubeRecipe timeInSeconds(int timeInSeconds) {
+        var ticks = timeInSeconds * 20;
+        setValue(OritechRecipeSchema.TIME, ticks);
+        return this;
+    }
+
+    public OritechKubeRecipe seconds(int timeInSeconds) {
+        return timeInSeconds(timeInSeconds);
     }
 
     protected abstract void validateBeforeSerialization();

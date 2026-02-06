@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
-- /
+
+- added `ticks`, `timeInTicks`, and `duration` aliases to assign the `time` property
+- added `seconds` and `timeInSeconds` helper methods to assign the `time` property
 
 ## [0.1.0] - 2026-02-05
 

@@ -60,6 +60,7 @@ public abstract class OritechRecipeSchema {
         .exclude();
     public static final RecipeKey<Integer> TIME = NumberComponent.INT
         .key("time", ComponentRole.OTHER)
+        .functionNames(List.of("time", "ticks", "timeInTicks", "duration"))
         .optional(60)
         .exclude();
 
