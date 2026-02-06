@@ -2,6 +2,7 @@ package com.almostreliable.kubeoritech;
 
 import com.almostreliable.kubeoritech.component.ArchFluidStackComponent;
 import com.almostreliable.kubeoritech.component.FluidIngredientComponent;
+import com.almostreliable.kubeoritech.event.DeepDrillRegistrationEvent;
 import com.almostreliable.kubeoritech.event.SoulCollectionEvent;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleCollidedEvent;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleExitedEvent;
@@ -27,6 +28,7 @@ import com.almostreliable.kubeoritech.schema.OritechRecipeSchema;
 import dev.latvian.mods.kubejs.event.EventGroup;
 import dev.latvian.mods.kubejs.event.EventGroupRegistry;
 import dev.latvian.mods.kubejs.event.EventHandler;
+import dev.latvian.mods.kubejs.generator.KubeDataGenerator;
 import dev.latvian.mods.kubejs.plugin.KubeJSPlugin;
 import dev.latvian.mods.kubejs.recipe.component.RecipeComponentTypeRegistry;
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
@@ -89,6 +91,14 @@ public class KubePlugin implements KubeJSPlugin {
         }
     }
 
+    @Override
+    public void generateData(KubeDataGenerator generator) {
+        if (Events.DEEP_DRILL.hasListeners()) {
+            var event = new DeepDrillRegistrationEvent(generator::json);
+            Events.DEEP_DRILL.post(event);
+        }
+    }
+
     @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
     public interface Events {
 
@@ -98,6 +108,7 @@ public class KubePlugin implements KubeJSPlugin {
         EventHandler PARTICLE_COLLIDED = GROUP.server("particleCollided", () -> ParticleCollidedEvent.class).hasResult();
         EventHandler PARTICLE_EXITED = GROUP.server("particleExited", () -> ParticleExitedEvent.class);
 
+        EventHandler DEEP_DRILL = GROUP.server("deepDrillRegistration", () -> DeepDrillRegistrationEvent.class);
         EventHandler SOUL_COLLECTION = GROUP.server("soulCollection", () -> SoulCollectionEvent.class).hasResult();
     }
 }

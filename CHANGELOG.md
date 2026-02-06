@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
   - can be canceled to consume the particles without an output
 - added `particleExited` event
   - fired when a particle exits the Particle Accelerator
+- added `deepDrillRegistration` event to handle automatic registration of the material tag and the
+  recipe for the Bedrock Extractor
 - renamed `position` to `pos` and `blockEntity` to `soulCollector` in `soulCollection` event
 
 ## [0.2.0] - 2026-02-06
