@@ -1,28 +1,28 @@
-package com.almostreliable.kubeoritech.recipe;
+package com.almostreliable.kubeoritech.recipe.generator;
 
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.GrinderRecipeBuilder;
-import rearth.oritech.block.entity.processing.FragmentForgeBlockEntity;
+import rearth.oritech.api.recipe.ReactorGeneratorRecipeBuilder;
+import rearth.oritech.block.entity.reactor.ReactorControllerBlockEntity;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
- * See {@link GrinderRecipeBuilder}, and {@link FragmentForgeBlockEntity}.
+ * See {@link ReactorGeneratorRecipeBuilder}, and {@link ReactorControllerBlockEntity}.
  */
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-public class GrinderKubeRecipe extends OritechKubeRecipe {
+public class ReactorKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.GRINDER.getIdentifier(),
-        GrinderKubeRecipe.class,
-        GrinderKubeRecipe::new
+        RecipeContent.REACTOR.getIdentifier(),
+        ReactorKubeRecipe.class,
+        ReactorKubeRecipe::new
     );
 
     @Override
     protected void validateBeforeSerialization() {
         ensureItemInputsNotEmpty(1, 1);
-        ensureItemOutputsNotEmpty(1, 3);
+        ensureItemOutputsEmpty();
         ensureFluidInputEmpty();
         ensureFluidOutputsEmpty();
     }

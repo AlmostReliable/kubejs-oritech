@@ -1,4 +1,4 @@
-package com.almostreliable.kubeoritech.recipe;
+package com.almostreliable.kubeoritech.recipe.machine;
 
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 

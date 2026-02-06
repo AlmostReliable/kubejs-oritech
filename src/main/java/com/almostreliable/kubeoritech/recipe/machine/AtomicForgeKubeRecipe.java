@@ -1,27 +1,27 @@
-package com.almostreliable.kubeoritech.recipe;
+package com.almostreliable.kubeoritech.recipe.machine;
 
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.LaserRecipeBuilder;
-import rearth.oritech.block.entity.interaction.LaserArmBlockEntity;
+import rearth.oritech.api.recipe.AtomicForgeRecipeBuilder;
+import rearth.oritech.block.entity.processing.AtomicForgeBlockEntity;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
- * See {@link LaserRecipeBuilder}, and {@link LaserArmBlockEntity}.
+ * See {@link AtomicForgeRecipeBuilder}, and {@link AtomicForgeBlockEntity}.
  */
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-public class LaserKubeRecipe extends OritechKubeRecipe {
+public class AtomicForgeKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.LASER.getIdentifier(),
-        LaserKubeRecipe.class,
-        LaserKubeRecipe::new
+        RecipeContent.ATOMIC_FORGE.getIdentifier(),
+        AtomicForgeKubeRecipe.class,
+        AtomicForgeKubeRecipe::new
     );
 
     @Override
     protected void validateBeforeSerialization() {
-        ensureItemInputsNotEmpty(1, 1);
+        ensureItemInputsNotEmpty(1, 3);
         ensureItemOutputsNotEmpty(1, 1);
         ensureFluidInputEmpty();
         ensureFluidOutputsEmpty();
