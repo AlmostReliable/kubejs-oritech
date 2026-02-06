@@ -34,6 +34,10 @@ public class SoulCollectionDeathListenerMixin {
     private void kubejs_oritech$onSoulCollection(
         ServerLevel level, Holder<GameEvent> event, GameEvent.Context emitter, Vec3 emitterPos, CallbackInfoReturnable<Boolean> cir
     ) {
+        if (!KubePlugin.Events.SOUL_COLLECTION.hasListeners()) {
+            return;
+        }
+
         var entity = emitter.sourceEntity();
         Preconditions.checkArgument(entity == null || entity instanceof LivingEntity);
 
