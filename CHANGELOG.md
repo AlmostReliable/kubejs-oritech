@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+- /
+
+## [0.3.0] - 2026-02-06
 
 - added `particleInjected` event
   - fired when a particle is injected into the Particle Accelerator
@@ -28,5 +31,6 @@ Initial 1.21.1 release!
 
 <!-- Versions -->
 
+[0.3.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.3.0
 [0.2.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.2.0
 [0.1.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.1.0
