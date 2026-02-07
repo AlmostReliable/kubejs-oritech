@@ -9,8 +9,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
+import dev.latvian.mods.kubejs.error.KubeRuntimeException;
 import dev.latvian.mods.kubejs.event.EventResult;
 import dev.latvian.mods.kubejs.event.KubeEvent;
+import dev.latvian.mods.kubejs.script.SourceLine;
+import dev.latvian.mods.rhino.Context;
 import io.wispforest.owo.serialization.CodecUtils;
 import rearth.oritech.Oritech;
 import rearth.oritech.init.TagContent;
@@ -36,9 +39,9 @@ public class DeepDrillRegistrationEvent implements KubeEvent {
         this.jsonConsumer = jsonConsumer;
     }
 
-    public void add(Block inputBlock, ItemStack outputItem, int time, ResourceLocation id) {
+    public void add(Context ctx, Block inputBlock, ItemStack outputItem, int time, ResourceLocation id) {
         if (RECIPES.containsKey(id)) {
-            throw new IllegalArgumentException("recipe id '" + id + "' already registered");
+            throw new KubeRuntimeException("recipe id '" + id + "' already registered").source(SourceLine.of(ctx));
         }
 
         var oritechRecipe = new OritechRecipe(
@@ -52,7 +55,7 @@ public class DeepDrillRegistrationEvent implements KubeEvent {
 
         var encodeResult = CodecUtils.toCodec(OritechRecipeType.ORI_RECIPE_ENDEC).encode(oritechRecipe, JsonOps.INSTANCE, new JsonObject());
         if (encodeResult.isError()) {
-            throw new IllegalArgumentException("could not serialize deep drill recipe");
+            throw new KubeRuntimeException("could not serialize deep drill recipe").source(SourceLine.of(ctx));
         }
 
         var recipeJson = encodeResult.getOrThrow();
@@ -60,8 +63,8 @@ public class DeepDrillRegistrationEvent implements KubeEvent {
         inputBlocks.add(inputBlock.kjs$getId());
     }
 
-    public void add(Block inputBlock, ItemStack outputItem, ResourceLocation id) {
-        add(inputBlock, outputItem, 60, id);
+    public void add(Context ctx, Block inputBlock, ItemStack outputItem, ResourceLocation id) {
+        add(ctx, inputBlock, outputItem, 60, id);
     }
 
     @Override

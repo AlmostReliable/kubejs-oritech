@@ -3,7 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
-- /
+
+- changed `deepDrillRegistration` event to use proper KubeJS exceptions to display exact source line in case of errors
 
 ## [0.3.0] - 2026-02-06
 
