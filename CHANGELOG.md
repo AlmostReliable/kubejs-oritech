@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+- /
+
+## [0.4.0] - 2026-02-08
 
 - added `spawnEndPortal` and `spawnNetherPortal` helper methods to particle state events
 - fixed non Oritech recipes being completely removed ([#1](https://github.com/AlmostReliable/kubejs-oritech/issues/1))
@@ -35,6 +38,7 @@ Initial 1.21.1 release!
 
 <!-- Versions -->
 
+[0.4.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.0
 [0.3.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.3.0
 [0.2.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.2.0
 [0.1.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.1.0
