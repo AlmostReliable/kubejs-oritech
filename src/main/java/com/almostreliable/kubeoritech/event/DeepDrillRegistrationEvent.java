@@ -37,6 +37,7 @@ public class DeepDrillRegistrationEvent implements KubeEvent {
 
     public DeepDrillRegistrationEvent(BiConsumer<ResourceLocation, JsonElement> jsonConsumer) {
         this.jsonConsumer = jsonConsumer;
+        RECIPES.clear(); // workaround because entry point KubePlugin#generateData is fired twice
     }
 
     public void add(Context ctx, Block inputBlock, ItemStack outputItem, int time, ResourceLocation id) {
