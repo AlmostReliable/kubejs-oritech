@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+- added `spawnEndPortal` and `spawnNetherPortal` helper methods to particle state events
 - changed `deepDrillRegistration` event to use proper KubeJS exceptions to display exact source line in case of errors
 
 ## [0.3.0] - 2026-02-06
