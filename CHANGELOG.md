@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+- /
+
+## [0.4.1] - 2026-02-16
 
 - fixed startup crash caused by class loading issues
 
@@ -39,6 +42,7 @@ Initial 1.21.1 release!
 
 <!-- Versions -->
 
+[0.4.1]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.1
 [0.4.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.0
 [0.3.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.3.0
 [0.2.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.2.0
