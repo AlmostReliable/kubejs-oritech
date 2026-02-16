@@ -25,6 +25,8 @@ import com.almostreliable.kubeoritech.recipe.machine.PulverizerKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.RefineryKubeRecipe;
 import com.almostreliable.kubeoritech.schema.OritechRecipeSchema;
 
+import net.minecraft.Util;
+
 import dev.latvian.mods.kubejs.event.EventGroup;
 import dev.latvian.mods.kubejs.event.EventGroupRegistry;
 import dev.latvian.mods.kubejs.event.EventHandler;
@@ -39,29 +41,30 @@ import rearth.oritech.init.recipes.RecipeContent;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public class KubePlugin implements KubeJSPlugin {
 
-    private static final Map<OritechRecipeType, KubeRecipeFactory> RECIPES = new HashMap<>();
-
-    static {
-        RECIPES.put(RecipeContent.PULVERIZER, PulverizerKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.GRINDER, GrinderKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.ASSEMBLER, AssemblerKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.REFINERY, RefineryKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.FOUNDRY, FoundryKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.CENTRIFUGE, CentrifugeKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.CENTRIFUGE_FLUID, CentrifugeFluidKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.ATOMIC_FORGE, AtomicForgeKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.BIO_GENERATOR, BioGeneratorKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.FUEL_GENERATOR, FuelGeneratorKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.LAVA_GENERATOR, LavaGeneratorKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.DEEP_DRILL, DeepDrillKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.PARTICLE_COLLISION, ParticleCollisionKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.COOLER, CoolerKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.REACTOR, ReactorKubeRecipe.FACTORY);
-        RECIPES.put(RecipeContent.LASER, LaserKubeRecipe.FACTORY);
-    }
+    private static final Supplier<Map<OritechRecipeType, KubeRecipeFactory>> RECIPES = () -> Util.make(() -> {
+        var recipes = new HashMap<OritechRecipeType, KubeRecipeFactory>();
+        recipes.put(RecipeContent.PULVERIZER, PulverizerKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.GRINDER, GrinderKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.ASSEMBLER, AssemblerKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.REFINERY, RefineryKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.FOUNDRY, FoundryKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.CENTRIFUGE, CentrifugeKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.CENTRIFUGE_FLUID, CentrifugeFluidKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.ATOMIC_FORGE, AtomicForgeKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.BIO_GENERATOR, BioGeneratorKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.FUEL_GENERATOR, FuelGeneratorKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.LAVA_GENERATOR, LavaGeneratorKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.DEEP_DRILL, DeepDrillKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.PARTICLE_COLLISION, ParticleCollisionKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.COOLER, CoolerKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.REACTOR, ReactorKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.LASER, LaserKubeRecipe.FACTORY);
+        return recipes;
+    });
 
     @Override
     public void registerEvents(EventGroupRegistry registry) {
@@ -76,14 +79,14 @@ public class KubePlugin implements KubeJSPlugin {
 
     @Override
     public void registerRecipeFactories(RecipeFactoryRegistry registry) {
-        for (var factory : RECIPES.values()) {
+        for (var factory : RECIPES.get().values()) {
             registry.register(factory);
         }
     }
 
     @Override
     public void registerRecipeSchemas(RecipeSchemaRegistry registry) {
-        for (var entry : RECIPES.entrySet()) {
+        for (var entry : RECIPES.get().entrySet()) {
             var recipeType = entry.getKey();
             var kubeRecipeFactory = entry.getValue();
             var id = recipeType.getIdentifier();

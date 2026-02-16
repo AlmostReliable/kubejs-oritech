@@ -3,7 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
-- /
+
+- fixed startup crash caused by class loading issues
 
 ## [0.4.0] - 2026-02-08
 
