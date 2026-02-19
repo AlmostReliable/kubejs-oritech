@@ -14,10 +14,13 @@ import net.minecraft.world.phys.Vec3;
 
 import com.google.common.base.Preconditions;
 import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -33,6 +36,9 @@ import java.util.Optional;
 
 @Mixin(AcceleratorControllerBlockEntity.class)
 public abstract class AcceleratorControllerBlockEntityMixin {
+
+    @Unique
+    private static final ThreadLocal<Vec3> COLLISION_POS = new ThreadLocal<>();
 
     @Shadow
     @Nullable
@@ -75,6 +81,19 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         }
     }
 
+    @WrapOperation(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/AcceleratorControllerBlockEntity;tryCraftResult(FLnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"), remap = false)
+    private boolean kubejs_oritech$captureCollisionPos(
+        AcceleratorControllerBlockEntity instance, float speed, ItemStack inputA, ItemStack inputB, Operation<Boolean> original,
+        @Local(argsOnly = true) Vec3 collision
+    ) {
+        try {
+            COLLISION_POS.set(collision);
+            return original.call(instance, speed, inputA, inputB);
+        } finally {
+            COLLISION_POS.remove();
+        }
+    }
+
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @Inject(method = "tryCraftResult", at = @At(value = "INVOKE", target = "Ljava/util/Optional;isEmpty()Z", ordinal = 1), cancellable = true, remap = false)
     private void kubejs_oritech$onParticleCollidedCraft(
@@ -82,7 +101,8 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         @Local(name = "candidate") Optional<RecipeHolder<OritechRecipe>> candidate
     ) {
         var eventHandler = KubePlugin.Events.PARTICLE_COLLIDED;
-        if (!eventHandler.hasListeners()) return;
+        var collisionPos = COLLISION_POS.get();
+        if (!eventHandler.hasListeners() || collisionPos == null) return;
 
         var blockEntity = (AcceleratorControllerBlockEntity) (Object) this;
         var level = (ServerLevel) blockEntity.getLevel();
@@ -91,13 +111,12 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         var recipe = recipeHolder == null ? null : recipeHolder.value();
 
         Preconditions.checkNotNull(level);
-        Preconditions.checkNotNull(particle);
 
         var kubeEvent = new ParticleCollidedEvent(
             level,
             blockEntity.getBlockPos(),
             blockEntity,
-            particle.position,
+            collisionPos,
             inputA,
             inputB,
             speed,

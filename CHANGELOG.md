@@ -3,7 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
-- /
+
+- fixed `particleCollided` event sometimes returning incorrect collision positions when particle is too fast
 
 ## [0.4.1] - 2026-02-16
 
