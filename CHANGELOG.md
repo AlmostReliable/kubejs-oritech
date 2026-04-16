@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+- /
+
+## [0.4.3] - 2026-04-16
 
 - updated to Oritech 1.2.1, which is also the new minimum version
 - fixed crashing with new Oritech version
@@ -48,6 +51,7 @@ Initial 1.21.1 release!
 
 <!-- Versions -->
 
+[0.4.3]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.3
 [0.4.2]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.2
 [0.4.1]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.1
 [0.4.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.0
