@@ -7,7 +7,6 @@ import dev.latvian.mods.kubejs.recipe.RecipeScriptContext;
 import dev.latvian.mods.kubejs.recipe.component.RecipeComponent;
 import dev.latvian.mods.kubejs.recipe.component.RecipeComponentType;
 import dev.latvian.mods.rhino.type.TypeInfo;
-import io.wispforest.owo.serialization.CodecUtils;
 import rearth.oritech.Oritech;
 import rearth.oritech.init.recipes.OritechRecipeType;
 
@@ -20,7 +19,7 @@ public record ArchFluidStackComponent(RecipeComponentType<?> type) implements Re
 
     @Override
     public Codec<FluidStack> codec() {
-        return CodecUtils.toCodec(OritechRecipeType.FLUID_STACK_ENDEC);
+        return OritechRecipeType.FLUID_STACK_CODEC;
     }
 
     @Override

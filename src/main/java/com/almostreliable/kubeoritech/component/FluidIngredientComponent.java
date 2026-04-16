@@ -12,7 +12,6 @@ import dev.latvian.mods.kubejs.recipe.component.RecipeComponent;
 import dev.latvian.mods.kubejs.recipe.component.RecipeComponentType;
 import dev.latvian.mods.rhino.NativeArray;
 import dev.latvian.mods.rhino.type.TypeInfo;
-import io.wispforest.owo.serialization.CodecUtils;
 import rearth.oritech.Oritech;
 import rearth.oritech.util.FluidIngredient;
 
@@ -25,7 +24,7 @@ public record FluidIngredientComponent(RecipeComponentType<?> type) implements R
 
     @Override
     public Codec<FluidIngredient> codec() {
-        return CodecUtils.toCodec(FluidIngredient.FLUID_INGREDIENT_ENDEC);
+        return FluidIngredient.CODEC;
     }
 
     @Override

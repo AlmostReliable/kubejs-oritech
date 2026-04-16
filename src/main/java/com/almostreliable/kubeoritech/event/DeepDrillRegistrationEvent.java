@@ -14,7 +14,6 @@ import dev.latvian.mods.kubejs.event.EventResult;
 import dev.latvian.mods.kubejs.event.KubeEvent;
 import dev.latvian.mods.kubejs.script.SourceLine;
 import dev.latvian.mods.rhino.Context;
-import io.wispforest.owo.serialization.CodecUtils;
 import rearth.oritech.Oritech;
 import rearth.oritech.init.TagContent;
 import rearth.oritech.init.recipes.OritechRecipe;
@@ -54,7 +53,7 @@ public class DeepDrillRegistrationEvent implements KubeEvent {
             List.of()
         );
 
-        var encodeResult = CodecUtils.toCodec(OritechRecipeType.ORI_RECIPE_ENDEC).encode(oritechRecipe, JsonOps.INSTANCE, new JsonObject());
+        var encodeResult = OritechRecipeType.ORI_RECIPE_CODEC.codec().encode(oritechRecipe, JsonOps.INSTANCE, new JsonObject());
         if (encodeResult.isError()) {
             throw new KubeRuntimeException("could not serialize deep drill recipe").source(SourceLine.of(ctx));
         }

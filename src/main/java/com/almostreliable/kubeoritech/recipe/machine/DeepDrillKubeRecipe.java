@@ -7,8 +7,6 @@ import rearth.oritech.api.recipe.DeepDrillRecipeBuilder;
 import rearth.oritech.block.entity.interaction.DeepDrillEntity;
 import rearth.oritech.init.recipes.RecipeContent;
 
-// TODO: add custom event to add tag and recipe automatically
-
 /**
  * See {@link DeepDrillRecipeBuilder}, and {@link DeepDrillEntity}.
  */

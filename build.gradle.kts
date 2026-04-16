@@ -20,7 +20,6 @@ repositories {
     maven("https://modmaven.dev")
     maven("https://maven.architectury.dev") // Architectury
     maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven") // GeckoLib
-    maven("https://maven.wispforest.io") // WeebLib
     maven("https://maven.su5ed.dev/releases") // Forgified Fabric API
     maven("https://beta.cursemaven.com") // Jade
     maven("https://maven.teamresourceful.com/repository/maven-public/") // Athena

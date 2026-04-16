@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
-- /
+
+- updated to Oritech 1.2.1, which is also the new minimum version
+- fixed crashing with new Oritech version
 
 ## [0.4.2] - 2026-02-19
 
