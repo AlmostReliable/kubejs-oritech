@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
-- /
+
+- updated to Oritech 1.2.6, which is also the new minimum version
+- fixed startup mixin error with new Oritech version
 
 ## [0.4.3] - 2026-04-16
 

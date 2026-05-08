@@ -47,7 +47,7 @@ public abstract class AcceleratorControllerBlockEntityMixin {
     public ItemStack activeItemParticle;
 
     @Shadow
-    protected abstract boolean tryCraftResult(float speed, ItemStack inputA, ItemStack inputB);
+    protected abstract boolean tryCraftResult(long speed, ItemStack inputA, ItemStack inputB);
 
     @Shadow
     @Final
@@ -81,9 +81,9 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         }
     }
 
-    @WrapOperation(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/AcceleratorControllerBlockEntity;tryCraftResult(FLnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"), remap = false)
+    @WrapOperation(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/AcceleratorControllerBlockEntity;tryCraftResult(JLnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"), remap = false)
     private boolean kubejs_oritech$captureCollisionPos(
-        AcceleratorControllerBlockEntity instance, float speed, ItemStack inputA, ItemStack inputB, Operation<Boolean> original,
+        AcceleratorControllerBlockEntity instance, long speed, ItemStack inputA, ItemStack inputB, Operation<Boolean> original,
         @Local(argsOnly = true) Vec3 collision
     ) {
         try {
@@ -97,7 +97,7 @@ public abstract class AcceleratorControllerBlockEntityMixin {
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
     @Inject(method = "tryCraftResult", at = @At(value = "INVOKE", target = "Ljava/util/Optional;isEmpty()Z", ordinal = 1), cancellable = true, remap = false)
     private void kubejs_oritech$onParticleCollidedCraft(
-        float speed, ItemStack inputA, ItemStack inputB, CallbackInfoReturnable<Boolean> cir,
+        long speed, ItemStack inputA, ItemStack inputB, CallbackInfoReturnable<Boolean> cir,
         @Local(name = "candidate") Optional<RecipeHolder<OritechRecipe>> candidate
     ) {
         var eventHandler = KubePlugin.Events.PARTICLE_COLLIDED;
@@ -146,7 +146,7 @@ public abstract class AcceleratorControllerBlockEntityMixin {
 
     @WrapWithCondition(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/AcceleratorControllerBlockEntity;spawnEndPortal(Lnet/minecraft/core/BlockPos;)V"), remap = false)
     private boolean kubejs_oritech$onSpawnEndPortal(
-        AcceleratorControllerBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed") float relativeSpeed,
+        AcceleratorControllerBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed") long relativeSpeed,
         @Local(name = "secondControllerEntity") AcceleratorControllerBlockEntity secondControllerEntity
     ) {
         if (ModInitializer.END_PORTAL_ENABLED) return true;
@@ -158,7 +158,7 @@ public abstract class AcceleratorControllerBlockEntityMixin {
 
     @WrapWithCondition(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/AcceleratorControllerBlockEntity;spawnNetherPortal(Lnet/minecraft/core/BlockPos;)V"), remap = false)
     private boolean kubejs_oritech$onSpawnNetherPortal(
-        AcceleratorControllerBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed") float relativeSpeed,
+        AcceleratorControllerBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed") long relativeSpeed,
         @Local(name = "secondControllerEntity") AcceleratorControllerBlockEntity secondControllerEntity
     ) {
         if (ModInitializer.NETHER_PORTA_ENABLED) return true;
