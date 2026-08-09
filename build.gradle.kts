@@ -33,4 +33,7 @@ dependencies {
     // implementation("rearth.oritech:oritech-neoforge-${almostgradle.minecraftVersion}:${almostgradle.getProperty("oritechVersion")}")
     // temporarily pull Oritech from CurseMaven until new version is available on official Maven
     implementation("curse.maven:oritech-1030830:8571095")
+    // transitive dependencies for Oritech (not available via CurseMaven automatically)
+    runtimeOnly("curse.maven:athena-841890:7970442") // Athena
+    runtimeOnly("curse.maven:geckolib-388172:8327201") // GeckoLib
 }
