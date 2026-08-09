@@ -36,7 +36,7 @@ import java.util.Optional;
 public abstract class ParticleAcceleratorBlockEntityMixin {
 
     @Unique
-    private static final ThreadLocal<Vec3> COLLISION_POS = new ThreadLocal<>();
+    private static final ThreadLocal<@Nullable Vec3> COLLISION_POS = new ThreadLocal<>();
 
     @Shadow
     private @Nullable ActiveParticle particle;
