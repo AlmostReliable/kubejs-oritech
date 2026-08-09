@@ -4,14 +4,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.crafting.SizedFluidIngredient;
+
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
 import dev.latvian.mods.kubejs.recipe.component.ComponentRole;
-import dev.latvian.mods.kubejs.recipe.component.SizedFluidIngredientComponent;
-import dev.latvian.mods.kubejs.recipe.component.StringComponent;
 import dev.latvian.mods.kubejs.recipe.component.FluidStackComponent;
 import dev.latvian.mods.kubejs.recipe.component.IngredientComponent;
 import dev.latvian.mods.kubejs.recipe.component.ItemStackComponent;
 import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
+import dev.latvian.mods.kubejs.recipe.component.SizedFluidIngredientComponent;
+import dev.latvian.mods.kubejs.recipe.component.StringComponent;
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 import dev.latvian.mods.kubejs.util.IntBounds;
@@ -22,7 +23,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 import java.util.List;
 
 /**
- * See {@link OritechRecipe}, {@link OritechRecipeType}, and {@link RecipeContent}.
+ * See {@link OritechRecipe} and {@link RecipeContent}.
  */
 public abstract class OritechRecipeSchema {
 
@@ -45,7 +46,7 @@ public abstract class OritechRecipeSchema {
     public static final RecipeKey<SizedFluidIngredient> FLUID_INPUT = SizedFluidIngredientComponent.SIZED_FLUID_INGREDIENT
         .key("fluidInput", ComponentRole.INPUT)
         .functionNames(List.of("fluidInput", "fluidIngredient", "fluid", "fluidInputs", "fluidIngredients", "fluids"))
-        .optional((SizedFluidIngredient)null)
+        .optional((SizedFluidIngredient) null)
         .exclude();
     public static final RecipeKey<List<FluidStack>> FLUID_OUTPUTS = FluidStackComponent.FLUID_STACK
         .asList()
