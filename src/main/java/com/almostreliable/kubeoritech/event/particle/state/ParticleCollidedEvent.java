@@ -1,6 +1,7 @@
 package com.almostreliable.kubeoritech.event.particle.state;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
@@ -66,6 +67,11 @@ public class ParticleCollidedEvent extends ParticleStateEvent {
     @Nullable
     public ResourceKey<Recipe<?>> getRecipeKey() {
         return recipeKey;
+    }
+
+    @Nullable
+    public Identifier getRecipeId() {
+        return recipeKey != null ? recipeKey.identifier() : null;
     }
 
     @Nullable
