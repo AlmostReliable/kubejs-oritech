@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class FoundryKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.FOUNDRY.get()),
+        getRecipeTypeId(RecipeContent.FOUNDRY.get()),
         FoundryKubeRecipe.class,
         FoundryKubeRecipe::new
     );

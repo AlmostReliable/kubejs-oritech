@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class AtomicForgeKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.ATOMIC_FORGE.get()),
+        getRecipeTypeId(RecipeContent.ATOMIC_FORGE.get()),
         AtomicForgeKubeRecipe.class,
         AtomicForgeKubeRecipe::new
     );

@@ -12,7 +12,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class IndustrialChillerKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.INDUSTRIAL_CHILLER.get()),
+        getRecipeTypeId(RecipeContent.INDUSTRIAL_CHILLER.get()),
         IndustrialChillerKubeRecipe.class,
         IndustrialChillerKubeRecipe::new
     );

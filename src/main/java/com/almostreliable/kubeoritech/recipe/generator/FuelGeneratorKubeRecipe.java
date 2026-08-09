@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class FuelGeneratorKubeRecipe extends FluidGeneratorKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.FUEL_GENERATOR.get()),
+        getRecipeTypeId(RecipeContent.FUEL_GENERATOR.get()),
         FuelGeneratorKubeRecipe.class,
         FuelGeneratorKubeRecipe::new
     );

@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class LaserKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.LASER.get()),
+        getRecipeTypeId(RecipeContent.LASER.get()),
         LaserKubeRecipe.class,
         LaserKubeRecipe::new
     );

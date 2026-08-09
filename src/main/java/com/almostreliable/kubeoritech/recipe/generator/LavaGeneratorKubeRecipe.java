@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class LavaGeneratorKubeRecipe extends FluidGeneratorKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.LAVA_GENERATOR.get()),
+        getRecipeTypeId(RecipeContent.LAVA_GENERATOR.get()),
         LavaGeneratorKubeRecipe.class,
         LavaGeneratorKubeRecipe::new
     );

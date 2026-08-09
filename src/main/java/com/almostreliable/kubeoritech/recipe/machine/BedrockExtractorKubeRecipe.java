@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class BedrockExtractorKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.BEDROCK_EXTRACTOR.get()),
+        getRecipeTypeId(RecipeContent.BEDROCK_EXTRACTOR.get()),
         BedrockExtractorKubeRecipe.class,
         BedrockExtractorKubeRecipe::new
     );

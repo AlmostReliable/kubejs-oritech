@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class CentrifugeFluidKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.CENTRIFUGE_FLUID.get()),
+        getRecipeTypeId(RecipeContent.CENTRIFUGE_FLUID.get()),
         CentrifugeFluidKubeRecipe.class,
         CentrifugeFluidKubeRecipe::new
     );

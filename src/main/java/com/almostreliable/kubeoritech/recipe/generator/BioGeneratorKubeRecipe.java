@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class BioGeneratorKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.BIO_GENERATOR.get()),
+        getRecipeTypeId(RecipeContent.BIO_GENERATOR.get()),
         BioGeneratorKubeRecipe.class,
         BioGeneratorKubeRecipe::new
     );

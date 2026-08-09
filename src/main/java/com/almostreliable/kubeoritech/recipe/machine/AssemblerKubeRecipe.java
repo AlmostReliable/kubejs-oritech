@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class AssemblerKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.ASSEMBLER.get()),
+        getRecipeTypeId(RecipeContent.ASSEMBLER.get()),
         AssemblerKubeRecipe.class,
         AssemblerKubeRecipe::new
     );

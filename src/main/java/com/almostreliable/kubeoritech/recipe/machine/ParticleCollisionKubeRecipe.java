@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class ParticleCollisionKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.PARTICLE_COLLISION.get()),
+        getRecipeTypeId(RecipeContent.PARTICLE_COLLISION.get()),
         ParticleCollisionKubeRecipe.class,
         ParticleCollisionKubeRecipe::new
     );

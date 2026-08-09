@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class PulverizerKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.PULVERIZER.get()),
+        getRecipeTypeId(RecipeContent.PULVERIZER.get()),
         PulverizerKubeRecipe.class,
         PulverizerKubeRecipe::new
     );

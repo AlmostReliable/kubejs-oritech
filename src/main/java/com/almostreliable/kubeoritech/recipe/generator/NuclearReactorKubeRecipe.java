@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class NuclearReactorKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        idFromRecipeType(RecipeContent.REACTOR.get()),
+        getRecipeTypeId(RecipeContent.REACTOR.get()),
         NuclearReactorKubeRecipe.class,
         NuclearReactorKubeRecipe::new
     );

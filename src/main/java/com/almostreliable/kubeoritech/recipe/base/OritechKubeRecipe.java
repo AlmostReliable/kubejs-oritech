@@ -16,7 +16,6 @@ import org.jspecify.annotations.Nullable;
 import rearth.oritech.init.recipes.OritechRecipe;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * See {@link OritechRecipe}, and {@link OritechRecipeSchema}.
@@ -27,20 +26,18 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
 
     @Override
     public void serialize() {
-        // workaround for the validation method firing too early (after CTor call, before chained functions)
         try {
             // inject actual recipe type, see OritechKubeRecipe
             setValue(OritechRecipeSchema.RECIPE_TYPE, type.idString);
+
+            // workaround for the validation method firing too early (after CTor call, before chained functions)
             validateBeforeSerialization();
+
             super.serialize();
         } catch (KubeRuntimeException e) {
             ConsoleJS.SERVER.error("Error creating recipe '" + getOrCreateId() + "'", e, RecipesKubeEvent.CREATE_RECIPE_SKIP_ERROR);
             valid = false;
         }
-    }
-
-    public static Identifier idFromRecipeType(RecipeType<OritechRecipe> recipeType) {
-        return Objects.requireNonNull(BuiltInRegistries.RECIPE_TYPE.getKey(recipeType));
     }
 
     public OritechKubeRecipe timeInSeconds(int timeInSeconds) {
@@ -51,6 +48,14 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
 
     public OritechKubeRecipe seconds(int timeInSeconds) {
         return timeInSeconds(timeInSeconds);
+    }
+
+    protected static Identifier getRecipeTypeId(RecipeType<OritechRecipe> recipeType) {
+        var recipeTypeId = BuiltInRegistries.RECIPE_TYPE.getKey(recipeType);
+        if (recipeTypeId == null) {
+            throw new IllegalArgumentException("recipe type '" + recipeType + "' is not registered");
+        }
+        return recipeTypeId;
     }
 
     protected abstract void validateBeforeSerialization();
