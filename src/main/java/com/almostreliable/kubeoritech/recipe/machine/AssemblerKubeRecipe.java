@@ -3,7 +3,7 @@ package com.almostreliable.kubeoritech.recipe.machine;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.AssemblerRecipeBuilder;
+import rearth.oritech.datagen.builders.AssemblerRecipeBuilder;
 import rearth.oritech.block.entity.processing.AssemblerBlockEntity;
 import rearth.oritech.init.recipes.RecipeContent;
 
@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class AssemblerKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.ASSEMBLER.getIdentifier(),
+        idFromRecipeType(RecipeContent.ASSEMBLER.get()),
         AssemblerKubeRecipe.class,
         AssemblerKubeRecipe::new
     );

@@ -8,11 +8,15 @@ import dev.latvian.mods.kubejs.recipe.KubeRecipe;
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
 import dev.latvian.mods.kubejs.recipe.RecipesKubeEvent;
 import dev.latvian.mods.kubejs.script.ConsoleJS;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.crafting.RecipeType;
 import rearth.oritech.init.recipes.OritechRecipe;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * See {@link OritechRecipe}, and {@link OritechRecipeSchema}.
@@ -25,12 +29,17 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
     public void serialize() {
         // workaround for the validation method firing too early (after CTor call, before chained functions)
         try {
+            setValue(OritechRecipeSchema.RECIPE_TYPE, this.type.idString);
             validateBeforeSerialization();
             super.serialize();
         } catch (KubeRuntimeException e) {
             ConsoleJS.SERVER.error("Error creating recipe '" + getOrCreateId() + "'", e, RecipesKubeEvent.CREATE_RECIPE_SKIP_ERROR);
             valid = false;
         }
+    }
+
+    public static Identifier idFromRecipeType(RecipeType<OritechRecipe> recipeType) {
+        return Objects.requireNonNull(BuiltInRegistries.RECIPE_TYPE.getKey(recipeType));
     }
 
     public OritechKubeRecipe timeInSeconds(int timeInSeconds) {
@@ -116,7 +125,7 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
 
     protected void ensureFluidInputEmpty() {
         var fluidInput = getValue(OritechRecipeSchema.FLUID_INPUT);
-        if (fluidInput != null && !fluidInput.isEmpty()) {
+        if (fluidInput != null) {
             throw new InvalidRecipeComponentValueException(
                 "this recipe type (" + type.idString + ") doesn't support a fluid input",
                 OritechRecipeSchema.FLUID_INPUT.component,
@@ -127,7 +136,7 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
 
     protected void ensureFluidInputNotEmpty() {
         var fluidInput = getValue(OritechRecipeSchema.FLUID_INPUT);
-        if (fluidInput == null || fluidInput.isEmpty()) {
+        if (fluidInput == null) {
             throw new InvalidRecipeComponentValueException(
                 "this recipe type (" + type.idString + ") needs a fluid input",
                 OritechRecipeSchema.FLUID_INPUT.component,

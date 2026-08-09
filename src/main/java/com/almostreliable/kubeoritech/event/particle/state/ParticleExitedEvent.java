@@ -4,8 +4,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.phys.Vec3;
 
-import rearth.oritech.block.entity.accelerator.AcceleratorControllerBlockEntity;
-import rearth.oritech.block.entity.accelerator.AcceleratorControllerBlockEntity.ParticleEvent;
+import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity;
+import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity.ParticleEvent;
 
 public class ParticleExitedEvent extends ParticleStateEvent {
 
@@ -18,7 +18,7 @@ public class ParticleExitedEvent extends ParticleStateEvent {
     private final ParticleEvent reason;
 
     public ParticleExitedEvent(
-        ServerLevel level, BlockPos pos, AcceleratorControllerBlockEntity controller, BlockPos gatePos, Vec3 fromVec, Vec3 toVec,
+        ServerLevel level, BlockPos pos, ParticleAcceleratorBlockEntity controller, BlockPos gatePos, Vec3 fromVec, Vec3 toVec,
         Vec3 directionVec, ParticleEvent reason
     ) {
         super(controller);

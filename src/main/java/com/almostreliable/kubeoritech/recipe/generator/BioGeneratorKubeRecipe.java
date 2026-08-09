@@ -3,7 +3,7 @@ package com.almostreliable.kubeoritech.recipe.generator;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.BioGeneratorRecipeBuilder;
+import rearth.oritech.datagen.builders.BioGeneratorRecipeBuilder;
 import rearth.oritech.block.entity.generators.BioGeneratorEntity;
 import rearth.oritech.init.recipes.RecipeContent;
 
@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class BioGeneratorKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.BIO_GENERATOR.getIdentifier(),
+        idFromRecipeType(RecipeContent.BIO_GENERATOR.get()),
         BioGeneratorKubeRecipe.class,
         BioGeneratorKubeRecipe::new
     );

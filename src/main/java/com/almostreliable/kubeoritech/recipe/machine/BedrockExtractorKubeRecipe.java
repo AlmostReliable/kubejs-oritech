@@ -3,20 +3,20 @@ package com.almostreliable.kubeoritech.recipe.machine;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.DeepDrillRecipeBuilder;
-import rearth.oritech.block.entity.interaction.DeepDrillEntity;
+import rearth.oritech.datagen.builders.BedrockExtractorRecipeBuilder;
+import rearth.oritech.block.entity.interaction.BedrockExtractorEntity;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
- * See {@link DeepDrillRecipeBuilder}, and {@link DeepDrillEntity}.
+ * See {@link BedrockExtractorRecipeBuilder}, and {@link BedrockExtractorEntity}.
  */
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-public class DeepDrillKubeRecipe extends OritechKubeRecipe {
+public class BedrockExtractorKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.DEEP_DRILL.getIdentifier(),
-        DeepDrillKubeRecipe.class,
-        DeepDrillKubeRecipe::new
+        idFromRecipeType(RecipeContent.BEDROCK_EXTRACTOR.get()),
+        BedrockExtractorKubeRecipe.class,
+        BedrockExtractorKubeRecipe::new
     );
 
     @Override

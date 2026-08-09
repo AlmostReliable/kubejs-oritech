@@ -1,6 +1,6 @@
 plugins {
-    id("net.neoforged.moddev") version "2.0.80"
-    id("com.almostreliable.almostgradle") version "1.5.2"
+    id("net.neoforged.moddev") version "2.0.143"
+    id("com.almostreliable.almostgradle") version "2.0.0"
 }
 
 almostgradle.setup {
@@ -18,9 +18,7 @@ repositories {
 
     // Oritech
     maven("https://modmaven.dev")
-    maven("https://maven.architectury.dev") // Architectury
     maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven") // GeckoLib
-    maven("https://maven.su5ed.dev/releases") // Forgified Fabric API
     maven("https://beta.cursemaven.com") // Jade
     maven("https://maven.teamresourceful.com/repository/maven-public/") // Athena
 }
@@ -31,5 +29,7 @@ dependencies {
         interfaceInjectionData(it)
     }
     // Oritech
-    implementation("rearth.oritech:oritech-neoforge-${almostgradle.minecraftVersion}:${almostgradle.getProperty("oritechVersion")}")
+    // implementation("rearth.oritech:oritech-neoforge-${almostgradle.minecraftVersion}:${almostgradle.getProperty("oritechVersion")}")
+    // temporarily pull Oritech jar from cursemaven until modmaven adds it
+    implementation("curse.maven:oritech-1030830:8571095")
 }

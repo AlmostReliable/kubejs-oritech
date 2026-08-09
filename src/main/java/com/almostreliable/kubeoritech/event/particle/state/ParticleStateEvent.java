@@ -1,29 +1,29 @@
 package com.almostreliable.kubeoritech.event.particle.state;
 
-import com.almostreliable.kubeoritech.mixin.AcceleratorControllerBlockEntityInvoker;
+import com.almostreliable.kubeoritech.mixin.ParticleAcceleratorBlockEntityInvoker;
 
 import net.minecraft.core.BlockPos;
 
 import dev.latvian.mods.kubejs.event.KubeEvent;
-import rearth.oritech.block.entity.accelerator.AcceleratorControllerBlockEntity;
+import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity;
 
 public abstract class ParticleStateEvent implements KubeEvent {
 
-    private final AcceleratorControllerBlockEntity controller;
+    private final ParticleAcceleratorBlockEntity controller;
 
-    ParticleStateEvent(AcceleratorControllerBlockEntity controller) {
+    ParticleStateEvent(ParticleAcceleratorBlockEntity controller) {
         this.controller = controller;
     }
 
     public void spawnEndPortal(BlockPos pos) {
-        ((AcceleratorControllerBlockEntityInvoker) controller).callSpawnEndPortal(pos);
+        ((ParticleAcceleratorBlockEntityInvoker) controller).callSpawnEndPortal(pos);
     }
 
     public void spawnNetherPortal(BlockPos pos) {
-        ((AcceleratorControllerBlockEntityInvoker) controller).callSpawnNetherPortal(pos);
+        ((ParticleAcceleratorBlockEntityInvoker) controller).callSpawnNetherPortal(pos);
     }
 
-    public AcceleratorControllerBlockEntity getController() {
+    public ParticleAcceleratorBlockEntity getController() {
         return controller;
     }
 }

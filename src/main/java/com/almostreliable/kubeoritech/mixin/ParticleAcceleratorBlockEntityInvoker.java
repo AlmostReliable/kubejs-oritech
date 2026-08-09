@@ -4,10 +4,10 @@ import net.minecraft.core.BlockPos;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
-import rearth.oritech.block.entity.accelerator.AcceleratorControllerBlockEntity;
+import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity;
 
-@Mixin(AcceleratorControllerBlockEntity.class)
-public interface AcceleratorControllerBlockEntityInvoker {
+@Mixin(ParticleAcceleratorBlockEntity.class)
+public interface ParticleAcceleratorBlockEntityInvoker {
 
     @Invoker
     void callSpawnEndPortal(BlockPos pos);

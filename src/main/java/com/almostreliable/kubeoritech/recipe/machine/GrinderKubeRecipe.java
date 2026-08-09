@@ -3,7 +3,7 @@ package com.almostreliable.kubeoritech.recipe.machine;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.GrinderRecipeBuilder;
+import rearth.oritech.datagen.builders.GrinderRecipeBuilder;
 import rearth.oritech.block.entity.processing.FragmentForgeBlockEntity;
 import rearth.oritech.init.recipes.RecipeContent;
 
@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class GrinderKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.GRINDER.getIdentifier(),
+        idFromRecipeType(RecipeContent.GRINDER.get()),
         GrinderKubeRecipe.class,
         GrinderKubeRecipe::new
     );

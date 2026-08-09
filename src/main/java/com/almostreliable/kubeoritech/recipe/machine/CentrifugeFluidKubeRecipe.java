@@ -3,7 +3,7 @@ package com.almostreliable.kubeoritech.recipe.machine;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.CentrifugeFluidRecipeBuilder;
+import rearth.oritech.datagen.builders.CentrifugeFluidRecipeBuilder;
 import rearth.oritech.block.entity.processing.CentrifugeBlockEntity;
 import rearth.oritech.init.recipes.RecipeContent;
 
@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class CentrifugeFluidKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.CENTRIFUGE_FLUID.getIdentifier(),
+        idFromRecipeType(RecipeContent.CENTRIFUGE_FLUID.get()),
         CentrifugeFluidKubeRecipe.class,
         CentrifugeFluidKubeRecipe::new
     );

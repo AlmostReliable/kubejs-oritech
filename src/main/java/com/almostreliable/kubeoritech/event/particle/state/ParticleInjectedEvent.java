@@ -6,7 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 
-import rearth.oritech.block.entity.accelerator.AcceleratorControllerBlockEntity;
+import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity;
 import rearth.oritech.block.entity.accelerator.AcceleratorParticleLogic.ActiveParticle;
 
 @SuppressWarnings("AssignmentToStaticFieldFromInstanceMethod")
@@ -20,7 +20,7 @@ public class ParticleInjectedEvent extends ParticleStateEvent {
     private final ItemStack item;
 
     public ParticleInjectedEvent(
-        ServerLevel level, BlockPos pos, AcceleratorControllerBlockEntity controller, BlockPos startPos, BlockPos gatePos,
+        ServerLevel level, BlockPos pos, ParticleAcceleratorBlockEntity controller, BlockPos startPos, BlockPos gatePos,
         ActiveParticle particle, ItemStack item
     ) {
         super(controller);
@@ -57,7 +57,7 @@ public class ParticleInjectedEvent extends ParticleStateEvent {
     }
 
     public void disableNetherPortal() {
-        ModInitializer.NETHER_PORTA_ENABLED = false;
+        ModInitializer.NETHER_PORTAL_ENABLED = false;
     }
 
     public void disableEndPortal() {
