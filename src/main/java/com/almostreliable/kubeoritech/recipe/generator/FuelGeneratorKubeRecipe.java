@@ -3,8 +3,8 @@ package com.almostreliable.kubeoritech.recipe.generator;
 import com.almostreliable.kubeoritech.recipe.base.FluidGeneratorKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.datagen.builders.FuelGeneratorRecipeBuilder;
 import rearth.oritech.block.entity.generators.FuelGeneratorEntity;
+import rearth.oritech.datagen.builders.FuelGeneratorRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**

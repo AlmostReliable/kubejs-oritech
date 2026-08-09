@@ -23,6 +23,8 @@ import com.almostreliable.kubeoritech.recipe.machine.PulverizerKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.RefineryKubeRecipe;
 import com.almostreliable.kubeoritech.schema.OritechRecipeSchema;
 
+import net.minecraft.world.item.crafting.RecipeType;
+
 import dev.latvian.mods.kubejs.event.EventGroup;
 import dev.latvian.mods.kubejs.event.EventGroupRegistry;
 import dev.latvian.mods.kubejs.event.EventHandler;
@@ -31,7 +33,6 @@ import dev.latvian.mods.kubejs.plugin.KubeJSPlugin;
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeFactoryRegistry;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchemaRegistry;
-import net.minecraft.world.item.crafting.RecipeType;
 import rearth.oritech.init.recipes.OritechRecipe;
 import rearth.oritech.init.recipes.RecipeContent;
 

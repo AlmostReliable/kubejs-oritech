@@ -7,10 +7,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.phys.Vec3;
 
+import org.jspecify.annotations.Nullable;
 import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity;
 import rearth.oritech.init.recipes.OritechRecipe;
-
-import org.jetbrains.annotations.Nullable;
 
 public class ParticleCollidedEvent extends ParticleStateEvent {
 

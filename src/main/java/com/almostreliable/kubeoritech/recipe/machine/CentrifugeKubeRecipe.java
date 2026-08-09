@@ -3,8 +3,8 @@ package com.almostreliable.kubeoritech.recipe.machine;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.datagen.builders.CentrifugeRecipeBuilder;
 import rearth.oritech.block.entity.processing.CentrifugeBlockEntity;
+import rearth.oritech.datagen.builders.CentrifugeRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**

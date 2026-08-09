@@ -3,8 +3,8 @@ package com.almostreliable.kubeoritech.recipe.generator;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.datagen.builders.ReactorGeneratorRecipeBuilder;
 import rearth.oritech.block.entity.reactor.NuclearReactorControllerBlockEntity;
+import rearth.oritech.datagen.builders.ReactorGeneratorRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**

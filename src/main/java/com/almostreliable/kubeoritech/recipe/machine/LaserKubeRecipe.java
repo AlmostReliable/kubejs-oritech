@@ -3,8 +3,8 @@ package com.almostreliable.kubeoritech.recipe.machine;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.datagen.builders.LaserRecipeBuilder;
 import rearth.oritech.block.entity.interaction.EndericLaserBlockEntity;
+import rearth.oritech.datagen.builders.LaserRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**

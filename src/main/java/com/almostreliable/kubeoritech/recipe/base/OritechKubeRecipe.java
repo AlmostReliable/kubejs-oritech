@@ -2,18 +2,18 @@ package com.almostreliable.kubeoritech.recipe.base;
 
 import com.almostreliable.kubeoritech.schema.OritechRecipeSchema;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.crafting.RecipeType;
+
 import dev.latvian.mods.kubejs.error.InvalidRecipeComponentValueException;
 import dev.latvian.mods.kubejs.error.KubeRuntimeException;
 import dev.latvian.mods.kubejs.recipe.KubeRecipe;
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
 import dev.latvian.mods.kubejs.recipe.RecipesKubeEvent;
 import dev.latvian.mods.kubejs.script.ConsoleJS;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.Identifier;
-import net.minecraft.world.item.crafting.RecipeType;
+import org.jspecify.annotations.Nullable;
 import rearth.oritech.init.recipes.OritechRecipe;
-
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;

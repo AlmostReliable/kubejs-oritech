@@ -1,4 +1,4 @@
-@NotNullByDefault
+@NullMarked
 package com.almostreliable.kubeoritech.recipe.machine;
 
-import org.jetbrains.annotations.NotNullByDefault;
+import org.jspecify.annotations.NullMarked;

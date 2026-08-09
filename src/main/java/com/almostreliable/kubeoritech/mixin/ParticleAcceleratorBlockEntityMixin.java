@@ -17,6 +17,8 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
+import org.jspecify.annotations.Nullable;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -24,12 +26,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import rearth.oritech.block.entity.accelerator.AcceleratorParticleLogic.ActiveParticle;
 import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity;
-import rearth.oritech.block.entity.accelerator.AcceleratorParticleLogic;
 import rearth.oritech.init.recipes.OritechRecipe;
-
-import org.jetbrains.annotations.Nullable;
-import org.objectweb.asm.Opcodes;
 
 import java.util.Optional;
 
@@ -40,8 +39,7 @@ public abstract class ParticleAcceleratorBlockEntityMixin {
     private static final ThreadLocal<Vec3> COLLISION_POS = new ThreadLocal<>();
 
     @Shadow
-    @Nullable
-    private AcceleratorParticleLogic.ActiveParticle particle;
+    private @Nullable ActiveParticle particle;
     @Shadow
     public ItemStack activeItemParticle;
 

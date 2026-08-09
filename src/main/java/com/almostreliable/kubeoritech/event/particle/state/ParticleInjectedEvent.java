@@ -6,8 +6,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 
-import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity;
 import rearth.oritech.block.entity.accelerator.AcceleratorParticleLogic.ActiveParticle;
+import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity;
 
 @SuppressWarnings("AssignmentToStaticFieldFromInstanceMethod")
 public class ParticleInjectedEvent extends ParticleStateEvent {
