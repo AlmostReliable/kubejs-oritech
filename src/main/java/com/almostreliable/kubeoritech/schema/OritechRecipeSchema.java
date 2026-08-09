@@ -45,10 +45,10 @@ public abstract class OritechRecipeSchema {
         .optional(List.of())
         .alwaysWrite()
         .exclude();
-    public static final RecipeKey<SizedFluidIngredient> FLUID_INPUT = SizedFluidIngredientComponent.SIZED_FLUID_INGREDIENT
+    public static final RecipeKey<SizedFluidIngredient> FLUID_INPUT = SizedFluidIngredientComponent.OPTIONAL_SIZED_FLUID_INGREDIENT
         .key("fluidInput", ComponentRole.INPUT)
         .functionNames(List.of("fluidInput", "fluidIngredient", "fluid", "fluidInputs", "fluidIngredients", "fluids"))
-        .optional((SizedFluidIngredient) null)
+        .defaultOptional()
         .exclude();
     public static final RecipeKey<List<FluidStack>> FLUID_OUTPUTS = FluidStackComponent.FLUID_STACK
         .asList()
@@ -77,6 +77,7 @@ public abstract class OritechRecipeSchema {
 
     public static RecipeSchema of(KubeRecipeFactory recipeFactory) {
         return new RecipeSchema(ITEM_INPUTS, ITEM_OUTPUTS, FLUID_INPUT, FLUID_OUTPUTS, TIME, RECIPE_TYPE)
-            .typeOverride(Oritech.id("machine_recipe")).factory(recipeFactory);
+            .typeOverride(Oritech.id("machine_recipe"))
+            .factory(recipeFactory);
     }
 }
