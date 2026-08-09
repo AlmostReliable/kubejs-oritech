@@ -77,7 +77,7 @@ public abstract class ParticleAcceleratorBlockEntityMixin {
     @WrapOperation(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/ParticleAcceleratorBlockEntity;tryCraftResult(JLnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"), remap = false)
     private boolean kubejs_oritech$captureCollisionPos(
         ParticleAcceleratorBlockEntity instance, long speed, ItemStack inputA, ItemStack inputB, Operation<Boolean> original,
-        @Local(argsOnly = true) Vec3 collision
+        @Local(argsOnly = true, name = "collision") Vec3 collision
     ) {
         try {
             COLLISION_POS.set(collision);
@@ -139,8 +139,8 @@ public abstract class ParticleAcceleratorBlockEntityMixin {
 
     @WrapWithCondition(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/ParticleAcceleratorBlockEntity;spawnEndPortal(Lnet/minecraft/core/BlockPos;)V"), remap = false)
     private boolean kubejs_oritech$onSpawnEndPortal(
-        ParticleAcceleratorBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed") long relativeSpeed,
-        @Local(name = "secondControllerEntity") ParticleAcceleratorBlockEntity secondControllerEntity
+        ParticleAcceleratorBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed", argsOnly = true) long relativeSpeed,
+        @Local(name = "secondControllerEntity", argsOnly = true) ParticleAcceleratorBlockEntity secondControllerEntity
     ) {
         if (ModInitializer.END_PORTAL_ENABLED) return true;
 
@@ -151,8 +151,8 @@ public abstract class ParticleAcceleratorBlockEntityMixin {
 
     @WrapWithCondition(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/ParticleAcceleratorBlockEntity;spawnNetherPortal(Lnet/minecraft/core/BlockPos;)V"), remap = false)
     private boolean kubejs_oritech$onSpawnNetherPortal(
-        ParticleAcceleratorBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed") long relativeSpeed,
-        @Local(name = "secondControllerEntity") ParticleAcceleratorBlockEntity secondControllerEntity
+        ParticleAcceleratorBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed", argsOnly = true) long relativeSpeed,
+        @Local(name = "secondControllerEntity", argsOnly = true) ParticleAcceleratorBlockEntity secondControllerEntity
     ) {
         if (ModInitializer.NETHER_PORTAL_ENABLED) return true;
 
