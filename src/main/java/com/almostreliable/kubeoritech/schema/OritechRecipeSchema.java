@@ -1,5 +1,7 @@
 package com.almostreliable.kubeoritech.schema;
 
+import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
+
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -60,10 +62,13 @@ public abstract class OritechRecipeSchema {
         .functionNames(List.of("time", "ticks", "timeInTicks", "duration"))
         .optional(60)
         .exclude();
-    // Oritech has changed to using oritech:machine_recipe as the "type" identifier,
-    // and passing in a "recipeType" identifier for the actual machines
-    // This is just adding "recipeType" to the schema here, the value will be injected
-    // in {@link OritechKubeRecipe}
+
+    /**
+     * Oritech always uses {@code oritech:machine_recipe} for the recipe type.
+     * There is a separate {@code recipeType} property for the actual machine type.
+     * <p>
+     * The type is later injected into the recipe via {@link OritechKubeRecipe}.
+     */
     public static final RecipeKey<String> RECIPE_TYPE = StringComponent.ID
         .key("recipeType", ComponentRole.OTHER)
         .defaultOptional()
