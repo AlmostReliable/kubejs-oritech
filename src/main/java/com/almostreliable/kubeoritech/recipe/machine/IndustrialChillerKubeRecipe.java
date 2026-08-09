@@ -3,10 +3,12 @@ package com.almostreliable.kubeoritech.recipe.machine;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
+import rearth.oritech.block.entity.processing.IndustrialChillerBlockEntity;
+import rearth.oritech.datagen.builders.IndustrialChillerRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
- * See {@link CoolerRecipeBuilder}, and {@link CoolerBlockEntity}.
+ * See {@link IndustrialChillerRecipeBuilder}, and {@link IndustrialChillerBlockEntity}.
  */
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 public class IndustrialChillerKubeRecipe extends OritechKubeRecipe {
