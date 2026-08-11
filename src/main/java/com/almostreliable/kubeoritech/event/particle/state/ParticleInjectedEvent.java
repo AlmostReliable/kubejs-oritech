@@ -57,7 +57,7 @@ public class ParticleInjectedEvent extends ParticleStateEvent {
     }
 
     public void disableNetherPortal() {
-        ModInitializer.NETHER_PORTA_ENABLED = false;
+        ModInitializer.NETHER_PORTAL_ENABLED = false;
     }
 
     public void disableEndPortal() {

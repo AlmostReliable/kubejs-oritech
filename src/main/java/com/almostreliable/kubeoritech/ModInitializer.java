@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 @Mod(ModConstants.MOD_ID)
 public final class ModInitializer {
 
-    public static boolean NETHER_PORTA_ENABLED = true;
+    public static boolean NETHER_PORTAL_ENABLED = true;
     public static boolean END_PORTAL_ENABLED = true;
 
     private static final Logger LOGGER = LogUtils.getLogger();

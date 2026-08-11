@@ -161,7 +161,7 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         AcceleratorControllerBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed") long relativeSpeed,
         @Local(name = "secondControllerEntity") AcceleratorControllerBlockEntity secondControllerEntity
     ) {
-        if (ModInitializer.NETHER_PORTA_ENABLED) return true;
+        if (ModInitializer.NETHER_PORTAL_ENABLED) return true;
 
         // it should still be possible to craft an item with two fire charges
         tryCraftResult(relativeSpeed, activeItemParticle, secondControllerEntity.activeItemParticle);
