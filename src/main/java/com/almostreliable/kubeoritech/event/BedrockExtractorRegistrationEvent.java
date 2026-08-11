@@ -1,9 +1,12 @@
 package com.almostreliable.kubeoritech.event;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.event.ModifyRecipeJsonsEvent;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -17,45 +20,44 @@ import dev.latvian.mods.rhino.Context;
 import rearth.oritech.Oritech;
 import rearth.oritech.init.TagContent;
 import rearth.oritech.init.recipes.OritechRecipe;
-import rearth.oritech.init.recipes.OritechRecipeType;
 import rearth.oritech.init.recipes.RecipeContent;
-import rearth.oritech.util.FluidIngredient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiConsumer;
 
-public class DeepDrillRegistrationEvent implements KubeEvent {
+public class BedrockExtractorRegistrationEvent implements KubeEvent {
 
-    private static final Map<ResourceLocation, JsonElement> RECIPES = new HashMap<>();
+    private static final Map<Identifier, JsonElement> RECIPES = new HashMap<>();
 
-    private final BiConsumer<ResourceLocation, JsonElement> jsonConsumer;
+    private final BiConsumer<Identifier, JsonElement> resourceJsonConsumer;
     private final List<String> inputBlocks = new ArrayList<>();
 
-    public DeepDrillRegistrationEvent(BiConsumer<ResourceLocation, JsonElement> jsonConsumer) {
-        this.jsonConsumer = jsonConsumer;
+    public BedrockExtractorRegistrationEvent(BiConsumer<Identifier, JsonElement> resourceJsonConsumer) {
+        this.resourceJsonConsumer = resourceJsonConsumer;
         RECIPES.clear(); // workaround because entry point KubePlugin#generateData is fired twice
     }
 
-    public void add(Context ctx, Block inputBlock, ItemStack outputItem, int time, ResourceLocation id) {
+    public void add(Context ctx, Block inputBlock, Item outputItem, int time, Identifier id) {
         if (RECIPES.containsKey(id)) {
             throw new KubeRuntimeException("recipe id '" + id + "' already registered").source(SourceLine.of(ctx));
         }
 
         var oritechRecipe = new OritechRecipe(
-            time,
             List.of(Ingredient.of(inputBlock)),
-            List.of(outputItem),
-            RecipeContent.DEEP_DRILL,
-            FluidIngredient.EMPTY,
-            List.of()
+            List.of(new ItemStackTemplate(outputItem)),
+            Optional.empty(),
+            List.of(),
+            time,
+            RecipeContent.BEDROCK_EXTRACTOR.get()
         );
 
-        var encodeResult = OritechRecipeType.ORI_RECIPE_CODEC.codec().encode(oritechRecipe, JsonOps.INSTANCE, new JsonObject());
+        var encodeResult = Recipe.CODEC.encode(oritechRecipe, JsonOps.INSTANCE, new JsonObject());
         if (encodeResult.isError()) {
-            throw new KubeRuntimeException("could not serialize deep drill recipe").source(SourceLine.of(ctx));
+            throw new KubeRuntimeException("could not serialize bedrock extractor recipe").source(SourceLine.of(ctx));
         }
 
         var recipeJson = encodeResult.getOrThrow();
@@ -63,7 +65,7 @@ public class DeepDrillRegistrationEvent implements KubeEvent {
         inputBlocks.add(inputBlock.kjs$getId());
     }
 
-    public void add(Context ctx, Block inputBlock, ItemStack outputItem, ResourceLocation id) {
+    public void add(Context ctx, Block inputBlock, Item outputItem, Identifier id) {
         add(ctx, inputBlock, outputItem, 60, id);
     }
 
@@ -78,14 +80,13 @@ public class DeepDrillRegistrationEvent implements KubeEvent {
 
         var tag = TagContent.RESOURCE_NODES.location();
         var tagId = Oritech.id("tags/block/" + tag.getPath());
-        jsonConsumer.accept(tagId, json);
+        resourceJsonConsumer.accept(tagId, json);
 
         inputBlocks.clear();
     }
 
-    @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-    public static void onInjectRecipes(BiConsumer<ResourceLocation, JsonElement> jsonConsumer) {
-        RECIPES.forEach(jsonConsumer);
+    public static void onRecipeJsonEvent(ModifyRecipeJsonsEvent event) {
+        event.getRecipeJsons().putAll(RECIPES);
         RECIPES.clear();
     }
 }

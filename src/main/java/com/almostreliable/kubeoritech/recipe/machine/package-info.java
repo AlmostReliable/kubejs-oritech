@@ -1,4 +1,4 @@
-@NonnullDefault
+@NullMarked
 package com.almostreliable.kubeoritech.recipe.machine;
 
-import org.lwjgl.system.NonnullDefault;
+import org.jspecify.annotations.NullMarked;

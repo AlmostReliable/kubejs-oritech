@@ -3,8 +3,8 @@ package com.almostreliable.kubeoritech.recipe.machine;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.RefineryRecipeBuilder;
 import rearth.oritech.block.entity.processing.RefineryBlockEntity;
+import rearth.oritech.datagen.builders.RefineryRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class RefineryKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.REFINERY.getIdentifier(),
+        getRecipeTypeId(RecipeContent.REFINERY.get()),
         RefineryKubeRecipe.class,
         RefineryKubeRecipe::new
     );

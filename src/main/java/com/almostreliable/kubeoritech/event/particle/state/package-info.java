@@ -1,4 +1,4 @@
-@NonnullDefault
+@NullMarked
 package com.almostreliable.kubeoritech.event.particle.state;
 
-import org.lwjgl.system.NonnullDefault;
+import org.jspecify.annotations.NullMarked;

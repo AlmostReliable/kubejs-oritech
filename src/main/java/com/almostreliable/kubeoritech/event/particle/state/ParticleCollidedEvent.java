@@ -1,15 +1,16 @@
 package com.almostreliable.kubeoritech.event.particle.state;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.phys.Vec3;
 
-import rearth.oritech.block.entity.accelerator.AcceleratorControllerBlockEntity;
+import org.jspecify.annotations.Nullable;
+import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity;
 import rearth.oritech.init.recipes.OritechRecipe;
-
-import org.jetbrains.annotations.Nullable;
 
 public class ParticleCollidedEvent extends ParticleStateEvent {
 
@@ -20,13 +21,13 @@ public class ParticleCollidedEvent extends ParticleStateEvent {
     private final ItemStack itemB;
     private final float speed;
     @Nullable
-    private final ResourceLocation recipeId;
+    private final ResourceKey<Recipe<?>> recipeKey;
     @Nullable
     private final OritechRecipe recipe;
 
     public ParticleCollidedEvent(
-        ServerLevel level, BlockPos pos, AcceleratorControllerBlockEntity controller, Vec3 collisionPos, ItemStack itemA,
-        ItemStack itemB, float speed, @Nullable ResourceLocation recipeId, @Nullable OritechRecipe recipe
+        ServerLevel level, BlockPos pos, ParticleAcceleratorBlockEntity controller, Vec3 collisionPos, ItemStack itemA,
+        ItemStack itemB, long speed, @Nullable ResourceKey<Recipe<?>> recipeKey, @Nullable OritechRecipe recipe
     ) {
         super(controller);
         this.level = level;
@@ -35,7 +36,7 @@ public class ParticleCollidedEvent extends ParticleStateEvent {
         this.itemA = itemA;
         this.itemB = itemB;
         this.speed = speed;
-        this.recipeId = recipeId;
+        this.recipeKey = recipeKey;
         this.recipe = recipe;
     }
 
@@ -64,8 +65,13 @@ public class ParticleCollidedEvent extends ParticleStateEvent {
     }
 
     @Nullable
-    public ResourceLocation getRecipeId() {
-        return recipeId;
+    public ResourceKey<Recipe<?>> getRecipeKey() {
+        return recipeKey;
+    }
+
+    @Nullable
+    public Identifier getRecipeId() {
+        return recipeKey != null ? recipeKey.identifier() : null;
     }
 
     @Nullable

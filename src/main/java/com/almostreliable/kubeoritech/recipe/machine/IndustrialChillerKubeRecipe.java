@@ -3,27 +3,27 @@ package com.almostreliable.kubeoritech.recipe.machine;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.DeepDrillRecipeBuilder;
-import rearth.oritech.block.entity.interaction.DeepDrillEntity;
+import rearth.oritech.block.entity.processing.IndustrialChillerBlockEntity;
+import rearth.oritech.datagen.builders.IndustrialChillerRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
- * See {@link DeepDrillRecipeBuilder}, and {@link DeepDrillEntity}.
+ * See {@link IndustrialChillerRecipeBuilder}, and {@link IndustrialChillerBlockEntity}.
  */
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-public class DeepDrillKubeRecipe extends OritechKubeRecipe {
+public class IndustrialChillerKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.DEEP_DRILL.getIdentifier(),
-        DeepDrillKubeRecipe.class,
-        DeepDrillKubeRecipe::new
+        getRecipeTypeId(RecipeContent.INDUSTRIAL_CHILLER.get()),
+        IndustrialChillerKubeRecipe.class,
+        IndustrialChillerKubeRecipe::new
     );
 
     @Override
     protected void validateBeforeSerialization() {
-        ensureItemInputsNotEmpty(1, 1);
+        ensureItemInputsEmpty();
         ensureItemOutputsNotEmpty(1, 1);
-        ensureFluidInputEmpty();
+        ensureFluidInputNotEmpty();
         ensureFluidOutputsEmpty();
     }
 }

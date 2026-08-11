@@ -2,15 +2,18 @@ package com.almostreliable.kubeoritech.recipe.base;
 
 import com.almostreliable.kubeoritech.schema.OritechRecipeSchema;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.item.crafting.RecipeType;
+
 import dev.latvian.mods.kubejs.error.InvalidRecipeComponentValueException;
 import dev.latvian.mods.kubejs.error.KubeRuntimeException;
 import dev.latvian.mods.kubejs.recipe.KubeRecipe;
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
 import dev.latvian.mods.kubejs.recipe.RecipesKubeEvent;
 import dev.latvian.mods.kubejs.script.ConsoleJS;
+import org.jspecify.annotations.Nullable;
 import rearth.oritech.init.recipes.OritechRecipe;
-
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -23,9 +26,10 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
 
     @Override
     public void serialize() {
-        // workaround for the validation method firing too early (after CTor call, before chained functions)
         try {
+            // workaround for the validation method firing too early (after CTor call, before chained functions)
             validateBeforeSerialization();
+
             super.serialize();
         } catch (KubeRuntimeException e) {
             ConsoleJS.SERVER.error("Error creating recipe '" + getOrCreateId() + "'", e, RecipesKubeEvent.CREATE_RECIPE_SKIP_ERROR);
@@ -41,6 +45,14 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
 
     public OritechKubeRecipe seconds(int timeInSeconds) {
         return timeInSeconds(timeInSeconds);
+    }
+
+    protected static Identifier getRecipeTypeId(RecipeType<OritechRecipe> recipeType) {
+        var recipeTypeId = BuiltInRegistries.RECIPE_TYPE.getKey(recipeType);
+        if (recipeTypeId == null) {
+            throw new IllegalArgumentException("recipe type '" + recipeType + "' is not registered");
+        }
+        return recipeTypeId;
     }
 
     protected abstract void validateBeforeSerialization();
@@ -116,7 +128,7 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
 
     protected void ensureFluidInputEmpty() {
         var fluidInput = getValue(OritechRecipeSchema.FLUID_INPUT);
-        if (fluidInput != null && !fluidInput.isEmpty()) {
+        if (fluidInput != null) {
             throw new InvalidRecipeComponentValueException(
                 "this recipe type (" + type.idString + ") doesn't support a fluid input",
                 OritechRecipeSchema.FLUID_INPUT.component,
@@ -127,7 +139,7 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
 
     protected void ensureFluidInputNotEmpty() {
         var fluidInput = getValue(OritechRecipeSchema.FLUID_INPUT);
-        if (fluidInput == null || fluidInput.isEmpty()) {
+        if (fluidInput == null) {
             throw new InvalidRecipeComponentValueException(
                 "this recipe type (" + type.idString + ") needs a fluid input",
                 OritechRecipeSchema.FLUID_INPUT.component,

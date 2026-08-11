@@ -3,8 +3,8 @@ package com.almostreliable.kubeoritech.recipe.machine;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.PulverizerRecipeBuilder;
 import rearth.oritech.block.entity.processing.PulverizerBlockEntity;
+import rearth.oritech.datagen.builders.PulverizerRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
@@ -14,7 +14,7 @@ import rearth.oritech.init.recipes.RecipeContent;
 public class PulverizerKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.PULVERIZER.getIdentifier(),
+        getRecipeTypeId(RecipeContent.PULVERIZER.get()),
         PulverizerKubeRecipe.class,
         PulverizerKubeRecipe::new
     );

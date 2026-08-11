@@ -17,7 +17,8 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import org.spongepowered.asm.mixin.Final;
+import org.jspecify.annotations.Nullable;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -25,42 +26,34 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import rearth.oritech.api.item.containers.InOutInventoryStorage;
-import rearth.oritech.block.entity.accelerator.AcceleratorControllerBlockEntity;
-import rearth.oritech.block.entity.accelerator.AcceleratorParticleLogic;
+import rearth.oritech.block.entity.accelerator.AcceleratorParticleLogic.ActiveParticle;
+import rearth.oritech.block.entity.accelerator.ParticleAcceleratorBlockEntity;
 import rearth.oritech.init.recipes.OritechRecipe;
-
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-@Mixin(AcceleratorControllerBlockEntity.class)
-public abstract class AcceleratorControllerBlockEntityMixin {
+@Mixin(ParticleAcceleratorBlockEntity.class)
+public abstract class ParticleAcceleratorBlockEntityMixin {
 
     @Unique
-    private static final ThreadLocal<Vec3> COLLISION_POS = new ThreadLocal<>();
+    private static final ThreadLocal<@Nullable Vec3> COLLISION_POS = new ThreadLocal<>();
 
     @Shadow
-    @Nullable
-    private AcceleratorParticleLogic.ActiveParticle particle;
+    private @Nullable ActiveParticle particle;
     @Shadow
     public ItemStack activeItemParticle;
 
     @Shadow
     protected abstract boolean tryCraftResult(long speed, ItemStack inputA, ItemStack inputB);
 
-    @Shadow
-    @Final
-    public InOutInventoryStorage inventory;
-
-    @Inject(method = "injectParticle", at = @At(value = "INVOKE", target = "Lrearth/oritech/api/item/containers/InOutInventoryStorage;getItem(I)Lnet/minecraft/world/item/ItemStack;"), cancellable = true, remap = false)
+    @Inject(method = "injectParticle", at = @At(value = "FIELD", opcode = Opcodes.PUTFIELD, target = "Lrearth/oritech/block/entity/accelerator/ParticleAcceleratorBlockEntity;activeItemParticle:Lnet/minecraft/world/item/ItemStack;"), cancellable = true, remap = false)
     private void kubejs_oritech$onInjectParticle(
         CallbackInfo ci, @Local(name = "startPosition") BlockPos startPos, @Local(name = "nextGate") BlockPos firstGatePos
     ) {
         var eventHandler = KubePlugin.Events.PARTICLE_INJECTED;
         if (!eventHandler.hasListeners()) return;
 
-        var blockEntity = (AcceleratorControllerBlockEntity) (Object) this;
+        var blockEntity = (ParticleAcceleratorBlockEntity) (Object) this;
         var level = (ServerLevel) blockEntity.getLevel();
 
         Preconditions.checkNotNull(level);
@@ -73,7 +66,7 @@ public abstract class AcceleratorControllerBlockEntityMixin {
             startPos,
             firstGatePos,
             particle,
-            inventory.getItem(0)
+            activeItemParticle
         );
         if (eventHandler.post(kubeEvent).interruptFalse()) {
             particle = null;
@@ -81,10 +74,10 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         }
     }
 
-    @WrapOperation(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/AcceleratorControllerBlockEntity;tryCraftResult(JLnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"), remap = false)
+    @WrapOperation(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/ParticleAcceleratorBlockEntity;tryCraftResult(JLnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"), remap = false)
     private boolean kubejs_oritech$captureCollisionPos(
-        AcceleratorControllerBlockEntity instance, long speed, ItemStack inputA, ItemStack inputB, Operation<Boolean> original,
-        @Local(argsOnly = true) Vec3 collision
+        ParticleAcceleratorBlockEntity instance, long speed, ItemStack inputA, ItemStack inputB, Operation<Boolean> original,
+        @Local(argsOnly = true, name = "collision") Vec3 collision
     ) {
         try {
             COLLISION_POS.set(collision);
@@ -95,7 +88,7 @@ public abstract class AcceleratorControllerBlockEntityMixin {
     }
 
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-    @Inject(method = "tryCraftResult", at = @At(value = "INVOKE", target = "Ljava/util/Optional;isEmpty()Z", ordinal = 1), cancellable = true, remap = false)
+    @Inject(method = "tryCraftResult", at = @At(value = "INVOKE", target = "Ljava/util/Optional;isEmpty()Z"), cancellable = true, remap = false)
     private void kubejs_oritech$onParticleCollidedCraft(
         long speed, ItemStack inputA, ItemStack inputB, CallbackInfoReturnable<Boolean> cir,
         @Local(name = "candidate") Optional<RecipeHolder<OritechRecipe>> candidate
@@ -104,7 +97,7 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         var collisionPos = COLLISION_POS.get();
         if (!eventHandler.hasListeners() || collisionPos == null) return;
 
-        var blockEntity = (AcceleratorControllerBlockEntity) (Object) this;
+        var blockEntity = (ParticleAcceleratorBlockEntity) (Object) this;
         var level = (ServerLevel) blockEntity.getLevel();
         var recipeHolder = candidate.orElse(null);
         var recipeId = recipeHolder == null ? null : recipeHolder.id();
@@ -130,12 +123,12 @@ public abstract class AcceleratorControllerBlockEntityMixin {
 
     @Inject(method = "onParticleExited", at = @At("HEAD"), remap = false)
     private void kubejs_oritech$onParticleExited(
-        Vec3 from, Vec3 to, BlockPos lastGate, Vec3 exitDirection, AcceleratorControllerBlockEntity.ParticleEvent reason, CallbackInfo ci
+        Vec3 from, Vec3 to, BlockPos lastGate, Vec3 exitDirection, ParticleAcceleratorBlockEntity.ParticleEvent reason, CallbackInfo ci
     ) {
         var eventHandler = KubePlugin.Events.PARTICLE_EXITED;
         if (!eventHandler.hasListeners()) return;
 
-        var blockEntity = (AcceleratorControllerBlockEntity) (Object) this;
+        var blockEntity = (ParticleAcceleratorBlockEntity) (Object) this;
         var level = (ServerLevel) blockEntity.getLevel();
 
         Preconditions.checkNotNull(level);
@@ -144,10 +137,10 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         eventHandler.post(kubeEvent);
     }
 
-    @WrapWithCondition(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/AcceleratorControllerBlockEntity;spawnEndPortal(Lnet/minecraft/core/BlockPos;)V"), remap = false)
+    @WrapWithCondition(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/ParticleAcceleratorBlockEntity;spawnEndPortal(Lnet/minecraft/core/BlockPos;)V"), remap = false)
     private boolean kubejs_oritech$onSpawnEndPortal(
-        AcceleratorControllerBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed") long relativeSpeed,
-        @Local(name = "secondControllerEntity") AcceleratorControllerBlockEntity secondControllerEntity
+        ParticleAcceleratorBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed", argsOnly = true) long relativeSpeed,
+        @Local(name = "secondControllerEntity", argsOnly = true) ParticleAcceleratorBlockEntity secondControllerEntity
     ) {
         if (ModInitializer.END_PORTAL_ENABLED) return true;
 
@@ -156,12 +149,12 @@ public abstract class AcceleratorControllerBlockEntityMixin {
         return false;
     }
 
-    @WrapWithCondition(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/AcceleratorControllerBlockEntity;spawnNetherPortal(Lnet/minecraft/core/BlockPos;)V"), remap = false)
+    @WrapWithCondition(method = "onParticleCollided", at = @At(value = "INVOKE", target = "Lrearth/oritech/block/entity/accelerator/ParticleAcceleratorBlockEntity;spawnNetherPortal(Lnet/minecraft/core/BlockPos;)V"), remap = false)
     private boolean kubejs_oritech$onSpawnNetherPortal(
-        AcceleratorControllerBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed") long relativeSpeed,
-        @Local(name = "secondControllerEntity") AcceleratorControllerBlockEntity secondControllerEntity
+        ParticleAcceleratorBlockEntity instance, BlockPos pos, @Local(name = "relativeSpeed", argsOnly = true) long relativeSpeed,
+        @Local(name = "secondControllerEntity", argsOnly = true) ParticleAcceleratorBlockEntity secondControllerEntity
     ) {
-        if (ModInitializer.NETHER_PORTA_ENABLED) return true;
+        if (ModInitializer.NETHER_PORTAL_ENABLED) return true;
 
         // it should still be possible to craft an item with two fire charges
         tryCraftResult(relativeSpeed, activeItemParticle, secondControllerEntity.activeItemParticle);

@@ -8,9 +8,8 @@ import net.minecraft.world.phys.Vec3;
 
 import dev.latvian.mods.kubejs.event.KubeEvent;
 import dev.latvian.mods.rhino.util.HideFromJS;
+import org.jspecify.annotations.Nullable;
 import rearth.oritech.block.entity.arcane.BaseSoulCollectionEntity;
-
-import org.jetbrains.annotations.Nullable;
 
 /**
  * See {@link SoulCollectionDeathListenerMixin}.

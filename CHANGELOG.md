@@ -3,7 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
-- /
+
+- updated to Minecraft 26.1.2 and Oritech 2.0.0-exp3 ([#4](https://github.com/AlmostReliable/kubejs-oritech/pull/4))
 
 ## [0.4.4] - 2026-05-08
 

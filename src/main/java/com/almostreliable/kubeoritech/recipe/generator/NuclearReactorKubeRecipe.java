@@ -3,20 +3,20 @@ package com.almostreliable.kubeoritech.recipe.generator;
 import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
-import rearth.oritech.api.recipe.ReactorGeneratorRecipeBuilder;
-import rearth.oritech.block.entity.reactor.ReactorControllerBlockEntity;
+import rearth.oritech.block.entity.reactor.NuclearReactorControllerBlockEntity;
+import rearth.oritech.datagen.builders.ReactorGeneratorRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
- * See {@link ReactorGeneratorRecipeBuilder}, and {@link ReactorControllerBlockEntity}.
+ * See {@link ReactorGeneratorRecipeBuilder}, and {@link NuclearReactorControllerBlockEntity}.
  */
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-public class ReactorKubeRecipe extends OritechKubeRecipe {
+public class NuclearReactorKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        RecipeContent.REACTOR.getIdentifier(),
-        ReactorKubeRecipe.class,
-        ReactorKubeRecipe::new
+        getRecipeTypeId(RecipeContent.REACTOR.get()),
+        NuclearReactorKubeRecipe.class,
+        NuclearReactorKubeRecipe::new
     );
 
     @Override

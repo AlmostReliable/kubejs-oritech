@@ -38,7 +38,7 @@ jobs:
     secrets: inherit
     with:
       java-distribution: "microsoft"
-      java-version: "21"
+      java-version: "25"
       mod_name: "KubeJS-Oritech"
       curseforge_id: "1153301"
       modrinth_id: "dobSKckb"
