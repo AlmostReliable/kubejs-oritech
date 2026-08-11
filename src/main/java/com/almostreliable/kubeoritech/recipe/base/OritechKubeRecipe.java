@@ -27,9 +27,6 @@ public abstract class OritechKubeRecipe extends KubeRecipe {
     @Override
     public void serialize() {
         try {
-            // inject actual recipe type, see OritechKubeRecipe
-            setValue(OritechRecipeSchema.RECIPE_TYPE, type.idString);
-
             // workaround for the validation method firing too early (after CTor call, before chained functions)
             validateBeforeSerialization();
 

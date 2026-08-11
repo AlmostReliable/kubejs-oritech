@@ -1,7 +1,5 @@
 package com.almostreliable.kubeoritech.schema;
 
-import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
-
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -14,11 +12,9 @@ import dev.latvian.mods.kubejs.recipe.component.IngredientComponent;
 import dev.latvian.mods.kubejs.recipe.component.ItemStackComponent;
 import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
 import dev.latvian.mods.kubejs.recipe.component.SizedFluidIngredientComponent;
-import dev.latvian.mods.kubejs.recipe.component.StringComponent;
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 import dev.latvian.mods.kubejs.util.IntBounds;
-import rearth.oritech.Oritech;
 import rearth.oritech.init.recipes.OritechRecipe;
 import rearth.oritech.init.recipes.RecipeContent;
 
@@ -63,21 +59,7 @@ public abstract class OritechRecipeSchema {
         .optional(60)
         .exclude();
 
-    /**
-     * Oritech always uses {@code oritech:machine_recipe} for the recipe type.
-     * There is a separate {@code recipeType} property for the actual machine type.
-     * <p>
-     * The type is later injected into the recipe via {@link OritechKubeRecipe}.
-     */
-    public static final RecipeKey<String> RECIPE_TYPE = StringComponent.ID
-        .key("recipeType", ComponentRole.OTHER)
-        .defaultOptional()
-        .alwaysWrite()
-        .exclude();
-
     public static RecipeSchema of(KubeRecipeFactory recipeFactory) {
-        return new RecipeSchema(ITEM_INPUTS, ITEM_OUTPUTS, FLUID_INPUT, FLUID_OUTPUTS, TIME, RECIPE_TYPE)
-            .typeOverride(Oritech.id("machine_recipe"))
-            .factory(recipeFactory);
+        return new RecipeSchema(ITEM_INPUTS, ITEM_OUTPUTS, FLUID_INPUT, FLUID_OUTPUTS, TIME).factory(recipeFactory);
     }
 }
