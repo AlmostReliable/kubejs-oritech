@@ -23,7 +23,7 @@ public abstract class FluidGeneratorKubeRecipe extends OritechKubeRecipe {
 
         var fluidInput = getValue(OritechRecipeSchema.FLUID_INPUT);
         Preconditions.checkNotNull(fluidInput);
-        if (fluidInput.test(new FluidStack(Fluids.WATER, 1))) {
+        if (fluidInput.ingredient().test(new FluidStack(Fluids.WATER, 1))) {
             throw new InvalidRecipeComponentValueException(
                 "this recipe type (" + type.idString + ") doesn't support water as the fluid input",
                 OritechRecipeSchema.FLUID_INPUT.component,
