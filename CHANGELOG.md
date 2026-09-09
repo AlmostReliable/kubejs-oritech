@@ -3,7 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
-- /
+
+- fixed fuel generator input validation not working correctly
 
 ## [0.4.4] - 2026-05-08
 
