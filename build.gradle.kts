@@ -12,12 +12,7 @@ almostgradle.setup {
 repositories {
     // KubeJS
     maven("https://maven.latvian.dev/releases")
-    maven("https://jitpack.io") { // Animated Gif Library
-        content {
-            includeGroup("com.github.rtyley")
-        }
-    }
-
+    maven("https://maven.latvian.dev/mirror")
     // Oritech
     maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven") // GeckoLib
     maven("https://maven.teamresourceful.com/repository/maven-public/") // Athena
