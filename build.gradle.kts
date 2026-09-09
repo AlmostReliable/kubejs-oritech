@@ -24,5 +24,5 @@ dependencies {
         interfaceInjectionData(it)
     }
     // Oritech
-    implementation("rearth.oritech:oritech:${almostgradle.getProperty("oritechVersion")}-citest2")
+    implementation("rearth.oritech:oritech:${almostgradle.getProperty("oritechVersion")}")
 }

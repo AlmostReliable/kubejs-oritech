@@ -4,19 +4,19 @@ import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
 import rearth.oritech.block.entity.interaction.EndericLaserBlockEntity;
-import rearth.oritech.datagen.builders.LaserRecipeBuilder;
+import rearth.oritech.datagen.builders.EndericLaserRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
- * See {@link LaserRecipeBuilder}, and {@link EndericLaserBlockEntity}.
+ * See {@link EndericLaserRecipeBuilder}, and {@link EndericLaserBlockEntity}.
  */
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-public class LaserKubeRecipe extends OritechKubeRecipe {
+public class EndericLaserKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
         getRecipeTypeId(RecipeContent.LASER.get()),
-        LaserKubeRecipe.class,
-        LaserKubeRecipe::new
+        EndericLaserKubeRecipe.class,
+        EndericLaserKubeRecipe::new
     );
 
     @Override

@@ -4,11 +4,11 @@ import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
 import rearth.oritech.block.entity.reactor.NuclearReactorControllerBlockEntity;
-import rearth.oritech.datagen.builders.ReactorGeneratorRecipeBuilder;
+import rearth.oritech.datagen.builders.NuclearReactorGeneratorRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
- * See {@link ReactorGeneratorRecipeBuilder}, and {@link NuclearReactorControllerBlockEntity}.
+ * See {@link NuclearReactorGeneratorRecipeBuilder}, and {@link NuclearReactorControllerBlockEntity}.
  */
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
 public class NuclearReactorKubeRecipe extends OritechKubeRecipe {

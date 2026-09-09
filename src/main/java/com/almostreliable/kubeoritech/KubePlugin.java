@@ -14,10 +14,10 @@ import com.almostreliable.kubeoritech.recipe.machine.AtomicForgeKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.BedrockExtractorKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.CentrifugeFluidKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.CentrifugeKubeRecipe;
+import com.almostreliable.kubeoritech.recipe.machine.EndericLaserKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.FoundryKubeRecipe;
-import com.almostreliable.kubeoritech.recipe.machine.GrinderKubeRecipe;
+import com.almostreliable.kubeoritech.recipe.machine.FragmentForgeKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.IndustrialChillerKubeRecipe;
-import com.almostreliable.kubeoritech.recipe.machine.LaserKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.ParticleCollisionKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.PulverizerKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.RefineryKubeRecipe;
@@ -39,7 +39,7 @@ public class KubePlugin implements KubeJSPlugin {
 
     private static final Supplier<List<KubeRecipeFactory>> FACTORIES = () -> List.of(
         PulverizerKubeRecipe.FACTORY,
-        GrinderKubeRecipe.FACTORY,
+        FragmentForgeKubeRecipe.FACTORY,
         AssemblerKubeRecipe.FACTORY,
         RefineryKubeRecipe.FACTORY,
         FoundryKubeRecipe.FACTORY,
@@ -53,7 +53,7 @@ public class KubePlugin implements KubeJSPlugin {
         ParticleCollisionKubeRecipe.FACTORY,
         IndustrialChillerKubeRecipe.FACTORY,
         NuclearReactorKubeRecipe.FACTORY,
-        LaserKubeRecipe.FACTORY
+        EndericLaserKubeRecipe.FACTORY
     );
 
     @Override

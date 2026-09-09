@@ -4,19 +4,19 @@ import com.almostreliable.kubeoritech.recipe.base.OritechKubeRecipe;
 
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
 import rearth.oritech.block.entity.processing.FragmentForgeBlockEntity;
-import rearth.oritech.datagen.builders.GrinderRecipeBuilder;
+import rearth.oritech.datagen.builders.FragmentForgeRecipeBuilder;
 import rearth.oritech.init.recipes.RecipeContent;
 
 /**
- * See {@link GrinderRecipeBuilder}, and {@link FragmentForgeBlockEntity}.
+ * See {@link FragmentForgeRecipeBuilder}, and {@link FragmentForgeBlockEntity}.
  */
 @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
-public class GrinderKubeRecipe extends OritechKubeRecipe {
+public class FragmentForgeKubeRecipe extends OritechKubeRecipe {
 
     public static final KubeRecipeFactory FACTORY = new KubeRecipeFactory(
-        getRecipeTypeId(RecipeContent.GRINDER.get()),
-        GrinderKubeRecipe.class,
-        GrinderKubeRecipe::new
+        getRecipeTypeId(RecipeContent.FRAGMENT_FORGE.get()),
+        FragmentForgeKubeRecipe.class,
+        FragmentForgeKubeRecipe::new
     );
 
     @Override
