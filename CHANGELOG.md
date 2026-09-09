@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-- updated to Minecraft 26.1.2 and Oritech 2.0.0-exp3 ([#4](https://github.com/AlmostReliable/kubejs-oritech/pull/4))
+- updated to Minecraft 26.1.2 and Oritech 2.0.0-exp5 ([#4](https://github.com/AlmostReliable/kubejs-oritech/pull/4))
+- added new event to modify source values for Schrodingers Safe
 
 ## [0.4.4] - 2026-05-08
 
