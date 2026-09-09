@@ -1,6 +1,7 @@
 package com.almostreliable.kubeoritech;
 
 import com.almostreliable.kubeoritech.event.BedrockExtractorRegistrationEvent;
+import com.almostreliable.kubeoritech.event.SchrodingersSourceModificationEvent;
 import com.almostreliable.kubeoritech.event.SoulCollectionEvent;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleCollidedEvent;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleExitedEvent;
@@ -31,6 +32,8 @@ import dev.latvian.mods.kubejs.plugin.KubeJSPlugin;
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeFactoryRegistry;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchemaRegistry;
+import dev.latvian.mods.kubejs.script.ScriptType;
+import rearth.oritech.init.datamap.DataMapContent;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -81,6 +84,13 @@ public class KubePlugin implements KubeJSPlugin {
             var event = new BedrockExtractorRegistrationEvent(generator::json);
             Events.BEDROCK_EXTRACTOR.post(event);
         }
+
+        if (Events.SCHRODINGERS_SOURCE_MODIFICATION.hasListeners()) {
+            generator.dataMap(
+                DataMapContent.SCHRODINGERS_SAFE_SOURCE,
+                map -> Events.SCHRODINGERS_SOURCE_MODIFICATION.post(ScriptType.SERVER, new SchrodingersSourceModificationEvent(map))
+            );
+        }
     }
 
     @SuppressWarnings("StaticMethodOnlyUsedInOneClass")
@@ -94,5 +104,10 @@ public class KubePlugin implements KubeJSPlugin {
 
         EventHandler BEDROCK_EXTRACTOR = GROUP.server("bedrockExtractorRegistration", () -> BedrockExtractorRegistrationEvent.class);
         EventHandler SOUL_COLLECTION = GROUP.server("soulCollection", () -> SoulCollectionEvent.class).hasResult();
+
+        EventHandler SCHRODINGERS_SOURCE_MODIFICATION = GROUP.server(
+            "schrodingersSourceModification",
+            () -> SchrodingersSourceModificationEvent.class
+        );
     }
 }
