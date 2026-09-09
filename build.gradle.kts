@@ -10,12 +10,7 @@ almostgradle.setup {
 repositories {
     // KubeJS
     maven("https://maven.latvian.dev/releases")
-    maven("https://jitpack.io") { // Animated Gif Library
-        content {
-            includeGroup("com.github.rtyley")
-        }
-    }
-
+    maven("https://maven.latvian.dev/mirror")
     // Oritech
     maven("https://modmaven.dev")
     maven("https://maven.architectury.dev") // Architectury
