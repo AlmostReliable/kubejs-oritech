@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+- /
+
+## [0.4.5] - 2026-09-09
 
 - fixed fuel generator input validation not working correctly
 
@@ -57,6 +60,7 @@ Initial 1.21.1 release!
 
 <!-- Versions -->
 
+[0.4.5]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.5
 [0.4.4]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.4
 [0.4.3]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.3
 [0.4.2]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.2
