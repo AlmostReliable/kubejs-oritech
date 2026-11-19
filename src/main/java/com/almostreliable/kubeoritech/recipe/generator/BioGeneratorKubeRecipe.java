@@ -24,6 +24,6 @@ public class BioGeneratorKubeRecipe extends OritechKubeRecipe {
         ensureItemInputsNotEmpty(1, 1);
         ensureItemOutputsEmpty();
         ensureFluidInputEmpty();
-        ensureFluidInputEmpty();
+        ensureFluidOutputsEmpty();
     }
 }

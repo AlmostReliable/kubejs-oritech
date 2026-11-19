@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
-- /
+
+- added `steam_engine` recipe validation
+- fixed bio generator recipes not rejecting fluid outputs
 
 ## [0.4.5] - 2026-09-09
 

@@ -11,6 +11,7 @@ import com.almostreliable.kubeoritech.recipe.generator.BioGeneratorKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.generator.FuelGeneratorKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.generator.LavaGeneratorKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.generator.ReactorKubeRecipe;
+import com.almostreliable.kubeoritech.recipe.generator.SteamEngineKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.AssemblerKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.AtomicForgeKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.CentrifugeFluidKubeRecipe;
@@ -58,6 +59,7 @@ public class KubePlugin implements KubeJSPlugin {
         recipes.put(RecipeContent.BIO_GENERATOR, BioGeneratorKubeRecipe.FACTORY);
         recipes.put(RecipeContent.FUEL_GENERATOR, FuelGeneratorKubeRecipe.FACTORY);
         recipes.put(RecipeContent.LAVA_GENERATOR, LavaGeneratorKubeRecipe.FACTORY);
+        recipes.put(RecipeContent.STEAM_ENGINE, SteamEngineKubeRecipe.FACTORY);
         recipes.put(RecipeContent.DEEP_DRILL, DeepDrillKubeRecipe.FACTORY);
         recipes.put(RecipeContent.PARTICLE_COLLISION, ParticleCollisionKubeRecipe.FACTORY);
         recipes.put(RecipeContent.COOLER, CoolerKubeRecipe.FACTORY);
