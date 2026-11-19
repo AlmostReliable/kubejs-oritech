@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+- /
+
+## [0.5.0] - 2026-11-19
 
 - updated to Oritech 2.0.0-exp14
 - added `steam_engine` recipe validation
@@ -69,6 +72,7 @@ Initial 1.21.1 release!
 
 <!-- Versions -->
 
+[0.5.0]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v26.1.2-neoforge-0.5.0
 [0.4.5]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v26.1.2-neoforge-0.4.5
 [0.4.4]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.4
 [0.4.3]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.3
