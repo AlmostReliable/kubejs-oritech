@@ -4,6 +4,7 @@
   "package": "com.almostreliable.kubeoritech.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
+    "AcceleratorParticleLogicMixin",
     "ParticleAcceleratorBlockEntityInvoker",
     "ParticleAcceleratorBlockEntityMixin",
     "RecipesKubeEventMixin",
