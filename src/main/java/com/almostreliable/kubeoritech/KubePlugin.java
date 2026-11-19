@@ -10,6 +10,7 @@ import com.almostreliable.kubeoritech.recipe.generator.BioGeneratorKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.generator.FuelGeneratorKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.generator.LavaGeneratorKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.generator.NuclearReactorKubeRecipe;
+import com.almostreliable.kubeoritech.recipe.generator.SteamEngineKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.AssemblerKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.AtomicForgeKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.BedrockExtractorKubeRecipe;
@@ -52,6 +53,7 @@ public class KubePlugin implements KubeJSPlugin {
         BioGeneratorKubeRecipe.FACTORY,
         FuelGeneratorKubeRecipe.FACTORY,
         LavaGeneratorKubeRecipe.FACTORY,
+        SteamEngineKubeRecipe.FACTORY,
         BedrockExtractorKubeRecipe.FACTORY,
         ParticleCollisionKubeRecipe.FACTORY,
         IndustrialChillerKubeRecipe.FACTORY,
