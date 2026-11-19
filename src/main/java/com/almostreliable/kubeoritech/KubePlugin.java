@@ -5,6 +5,7 @@ import com.almostreliable.kubeoritech.event.SchrodingersSourceModificationEvent;
 import com.almostreliable.kubeoritech.event.SoulCollectionEvent;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleCollidedEvent;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleExitedEvent;
+import com.almostreliable.kubeoritech.event.particle.state.ParticleImpactEvent;
 import com.almostreliable.kubeoritech.event.particle.state.ParticleInjectedEvent;
 import com.almostreliable.kubeoritech.recipe.generator.BioGeneratorKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.generator.FuelGeneratorKubeRecipe;
@@ -25,11 +26,16 @@ import com.almostreliable.kubeoritech.recipe.machine.PulverizerKubeRecipe;
 import com.almostreliable.kubeoritech.recipe.machine.RefineryKubeRecipe;
 import com.almostreliable.kubeoritech.schema.OritechRecipeSchema;
 
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Block;
+
 import dev.latvian.mods.kubejs.event.EventGroup;
 import dev.latvian.mods.kubejs.event.EventGroupRegistry;
 import dev.latvian.mods.kubejs.event.EventHandler;
+import dev.latvian.mods.kubejs.event.TargetedEventHandler;
 import dev.latvian.mods.kubejs.generator.KubeDataGenerator;
 import dev.latvian.mods.kubejs.plugin.KubeJSPlugin;
+import dev.latvian.mods.kubejs.plugin.builtin.event.BlockEvents;
 import dev.latvian.mods.kubejs.recipe.schema.KubeRecipeFactory;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeFactoryRegistry;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchemaRegistry;
@@ -103,6 +109,9 @@ public class KubePlugin implements KubeJSPlugin {
         EventHandler PARTICLE_INJECTED = GROUP.server("particleInjected", () -> ParticleInjectedEvent.class).hasResult();
         EventHandler PARTICLE_COLLIDED = GROUP.server("particleCollided", () -> ParticleCollidedEvent.class).hasResult();
         EventHandler PARTICLE_EXITED = GROUP.server("particleExited", () -> ParticleExitedEvent.class);
+        TargetedEventHandler<ResourceKey<Block>> PARTICLE_IMPACT = GROUP.server("particleImpact", () -> ParticleImpactEvent.class)
+            .hasResult()
+            .supportsTarget(BlockEvents.TARGET);
 
         EventHandler BEDROCK_EXTRACTOR = GROUP.server("bedrockExtractorRegistration", () -> BedrockExtractorRegistrationEvent.class);
         EventHandler SOUL_COLLECTION = GROUP.server("soulCollection", () -> SoulCollectionEvent.class).hasResult();

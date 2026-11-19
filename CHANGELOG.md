@@ -6,6 +6,11 @@ All notable changes to this project will be documented in this file.
 
 - updated to Oritech 2.0.0-exp14
 - added `steam_engine` recipe validation
+- added `particleImpact` event
+  - fired for each block a particle hits after leaving the Particle Accelerator
+  - can be filtered by block ID
+  - can absorb the particle, let it pass through, or remove a custom amount of momentum
+  - can be canceled to let the particle pass through without breaking the block
 - fixed bio generator recipes not rejecting fluid outputs
 
 ## [0.4.5] - 2026-09-09
