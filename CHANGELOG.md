@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+- /
+
+## [0.4.6] - 2026-11-19
 
 - added `steam_engine` recipe validation
 - fixed bio generator recipes not rejecting fluid outputs
@@ -62,6 +65,7 @@ Initial 1.21.1 release!
 
 <!-- Versions -->
 
+[0.4.6]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.6
 [0.4.5]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.5
 [0.4.4]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.4
 [0.4.3]: https://github.com/AlmostReliable/kubejs-oritech/releases/tag/v1.21.1-neoforge-0.4.3
